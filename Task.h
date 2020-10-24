@@ -12,22 +12,22 @@
 
 #import "Alarm.h"
 
-//enum dueDates
-//{
-//	dueDateNone = 1,
-//	dueDateToday,
-//	dueDateTomorrow,
-//	dueDate3days,
-//	dueDate7days,
-//	dueDate30days
-//};
-//
-//enum {
-//	PriorityNone     = 0,
-//	PriorityHigh     = 1,
-//	PriorityMedium   = 5,
-//	PriorityLow      = 9
-//};
+enum dueDates
+{
+	dueDateNone = 1,
+	dueDateToday,
+	dueDateTomorrow,
+	dueDate3days,
+	dueDate7days,
+	dueDate30days
+};
+
+enum {
+	PriorityNone     = 0,
+	PriorityHigh     = 1,
+	PriorityMedium   = 5,
+	PriorityLow      = 9
+};
 
 @interface Task : NSObject {
 	

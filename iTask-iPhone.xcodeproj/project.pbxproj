@@ -69,6 +69,7 @@
 		7F2413D70F2EB75000D7A77B /* SortOrderListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2413D50F2EB75000D7A77B /* SortOrderListController.m */; };
 		7F2413DA0F2EB76C00D7A77B /* SortOrderTasksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2413D80F2EB76C00D7A77B /* SortOrderTasksCell.m */; };
 		7F460A690F3A48CB0028EB19 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F460A680F3A48CB0028EB19 /* CoreFoundation.framework */; };
+		7F564497254435AF0000A7E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F564496254435AF0000A7E9 /* Images.xcassets */; };
 		7F8448A80F1FC56900A5E1C1 /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8448A70F1FC56900A5E1C1 /* PreferencesViewController.m */; };
 		7FA2F50D0F3349F2007AED90 /* DeleteCompletedTasksListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2F50C0F3349F2007AED90 /* DeleteCompletedTasksListView.xib */; };
 		7FA2F50F0F334A09007AED90 /* SortOrderListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2F50E0F334A09007AED90 /* SortOrderListView.xib */; };
@@ -184,6 +185,7 @@
 		7F2413D80F2EB76C00D7A77B /* SortOrderTasksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortOrderTasksCell.m; sourceTree = "<group>"; };
 		7F2413D90F2EB76C00D7A77B /* SortOrderTasksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortOrderTasksCell.h; sourceTree = "<group>"; };
 		7F460A680F3A48CB0028EB19 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		7F564496254435AF0000A7E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "iTask-iPhone/Images.xcassets"; sourceTree = "<group>"; };
 		7F7F2B240F36552F00FED2DF /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		7F8448A60F1FC56900A5E1C1 /* PreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
 		7F8448A70F1FC56900A5E1C1 /* PreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7F564496254435AF0000A7E9 /* Images.xcassets */,
 				7FA2F50E0F334A09007AED90 /* SortOrderListView.xib */,
 				7FA2F50C0F3349F2007AED90 /* DeleteCompletedTasksListView.xib */,
 				49DD51E60EF086BC00AE0947 /* Images */,
@@ -520,6 +523,7 @@
 				7FDEFAA90F13BE5E008BAC3F /* Default.png in Resources */,
 				7FA3CDA80F1F907A00B37688 /* PreferencesView.xib in Resources */,
 				7F1CADE30F2F9F870094EDDA /* DueDateListView.xib in Resources */,
+				7F564497254435AF0000A7E9 /* Images.xcassets in Resources */,
 				7FA2F50D0F3349F2007AED90 /* DeleteCompletedTasksListView.xib in Resources */,
 				7FA2F50F0F334A09007AED90 /* SortOrderListView.xib in Resources */,
 			);
@@ -586,6 +590,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -608,6 +613,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
