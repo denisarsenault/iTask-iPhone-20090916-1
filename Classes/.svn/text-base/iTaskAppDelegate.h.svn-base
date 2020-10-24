@@ -1,0 +1,118 @@
+//
+//  iTask_iPhoneAppDelegate.h
+//  iTask-iPhone
+//
+//  Created by Scott Mitchell on 12/4/08.
+//  Copyright BitBlasters Software 2008. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <sqlite3.h>
+
+
+
+@class Task, InfoViewController, SplashScreenViewController;
+
+@interface iTaskAppDelegate : NSObject <UIApplicationDelegate> {
+    
+    UIWindow *window;
+    UINavigationController *navigationController;
+	
+	IBOutlet SplashScreenViewController *splashScreenViewController;
+	
+	InfoViewController *infoViewController;
+	
+	// Opaque reference to the SQLite database.
+    sqlite3 *database;
+	
+	//To hold a list of all Task objects
+	NSMutableArray *tasks;
+	
+	//To hold a Array of dictioary  objects wrapped around filteres task arrays
+	NSMutableArray *tasksArray;
+	
+	//To hold a Array of all Alarm Objects
+	NSMutableArray* alarms;
+	
+	//To hold a Array of all Alarm Objects
+	NSArray* calendarNames;
+	
+	// user preferences
+	NSDate	 *defaultDueDate;
+	NSNumber *defaultPriority;
+	
+	Boolean	 showOverdueTasks;
+	Boolean	 showTodaysTasks;
+	Boolean	 showTomorrowsTasks;
+	Boolean	 showFutureTasks;
+	Boolean	 showNoDueDateTasks;
+	Boolean	 showCompletedTasks;
+	
+	
+	Boolean	 showTableHeaders;
+}
+
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet SplashScreenViewController *splashScreenViewController;
+
+@property (nonatomic, retain) NSMutableArray *tasks;
+@property (nonatomic, retain) NSMutableArray *tasksArray;
+
+@property (nonatomic, retain) NSArray *calendarNames;
+
+@property (nonatomic, retain) NSDate* defaultDueDate;
+@property (nonatomic, retain) NSNumber *defaultPriority;
+@property (nonatomic, assign) Boolean	showOverdueTasks;
+@property (nonatomic, assign) Boolean	showTodaysTasks;
+@property (nonatomic, assign) Boolean	showTomorrowsTasks;
+@property (nonatomic, assign) Boolean	showFutureTasks;
+@property (nonatomic, assign) Boolean	showNoDueDateTasks;
+@property (nonatomic, assign) Boolean	showCompletedTasks;
+@property (nonatomic, assign) Boolean	showTableHeaders;
+
+#pragma mark -
+#pragma mark Singleton Methods
+
++ (id) sharedAppDelegate;
+
+#pragma mark -
+#pragma mark Allocation/Deallocation
+
+- (id) init;
+- (void) readPreferences;
+
+#pragma mark -
+
+- (void) loadData;
+- (void) showTaskList:(UIViewController*) previousView;
+
+// Create the dictionary used for display of the tasks
+- (void) updateTaskList;
+
+// Retrieve all objects from the database
+- (NSArray *)overdueTasks;
+- (NSArray *)todaysTasks;
+- (NSArray *)tomorrowsTasks;
+- (NSArray *)futureTasks;
+- (NSArray *)noDueDateTasks;
+- (NSArray *)completedTasks;
+
+// Removes a task from the array of tasks, and also deletes it from the database. There is no undo.
+- (IBAction)removeTask:(Task *)task;
+
+// Creates a new task object with default data. 
+- (void)addTask:(Task *)task;
+
+// Completed a  task, update the list of tasks
+- (void)completedTask:(Task *)task;
+
+- (IBAction)info:(id)sender;
+- (void) unloadInfo;
+
+
+- (NSString*)calDisplayFromUID:(NSString *)uid;
+
+
+@end
+

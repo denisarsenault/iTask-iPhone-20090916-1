@@ -1,0 +1,24 @@
+//
+//  RelativeDateViewController.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/16/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface RelativeDateViewController :UIViewController  <UITableViewDelegate, UITableViewDataSource>{
+	NSArray *relativeDateTypes;
+	UITableView *tableView;
+
+	
+}
+
+@property (nonatomic, retain) NSArray *relativeDateTypes;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+
+
+
+@end

@@ -1,0 +1,26 @@
+CREATE TABLE tasks(
+	taskID				INTEGER PRIMARY KEY AUTOINCREMENT,
+	desktopID			TEXT,
+	title			    TEXT,
+	completionDate		REAL,
+	priority			INTEGER,
+	dueDate				REAL,
+	calendar			TEXT,
+	url					TEXT,
+	notes				TEXT);
+
+CREATE TABLE alarm(
+	alarmID				INTEGER PRIMARY KEY AUTOINCREMENT,
+	taskID				INTEGER,
+	type				TEXT,
+	data				TEXT);
+<<<<<<< .mine
+
+	
+INSERT INTO tasks    VALUES(1, '', 'Buy Groceries', '', 1 , 1228780800, '', '', 'Bread, Milk, and Cereal');
+INSERT INTO tasks    VALUES(2, '', 'My Task', '', 2 , 1228867200, '', '', 'Work work work');
+INSERT INTO tasks    VALUES(3, '', 'Christmas Cards', '', 3 , 1228867200, '', '', 'Get Family pictures taken and create cards');
+INSERT INTO tasks    VALUES(4, '', 'Find Pet Sitter', '', 2 , 1230166800, '', '', 'Need a sitter for Christmas');
+INSERT INTO tasks    VALUES(5, '', 'Austin birthday gift', '', 2 , 1232323200, '', '', 'Buy a gift');
+INSERT INTO tasks    VALUES(6, '', 'No Due Date Task', '', 2 ,  '', '', '', 'Buy a gift');=======
+>>>>>>> .r36

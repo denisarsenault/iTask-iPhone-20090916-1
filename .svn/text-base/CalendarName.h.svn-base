@@ -1,0 +1,24 @@
+//
+//  CalendarName.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/13/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+@interface CalendarName : NSObject {
+	NSString*	UID;
+	NSString*	name;
+}
+
+@property (nonatomic, retain) NSString *UID;
+@property (nonatomic, retain) NSString *name;
+
+// Creates new task object with default settings
+- (id) initWithUID:(NSString*)aUID  name:(NSString*)aName; 
+
+
+@end

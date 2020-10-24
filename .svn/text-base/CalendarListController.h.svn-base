@@ -1,0 +1,25 @@
+//
+//  CalendarListController.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/13/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class Task;
+
+@interface CalendarListController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    NSArray *calendarNames;
+	UITableView *tableView;
+    Task	*task;
+
+}
+
+@property (nonatomic, retain) NSArray *calendarNames;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, assign) Task *task;
+
+
+@end

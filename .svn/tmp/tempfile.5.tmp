@@ -1,0 +1,25 @@
+CREATE TABLE tasks(
+	taskID				INTEGER PRIMARY KEY AUTOINCREMENT,
+	desktopID			TEXT,
+	title			    TEXT,
+	completionDate		REAL,
+	priority			INTEGER,
+	dueDate				REAL,
+	calendar			TEXT,
+	url					TEXT,
+	notes				TEXT);
+
+CREATE TABLE alarms(
+	alarmID				INTEGER PRIMARY KEY AUTOINCREMENT,
+	taskID				INTEGER,
+	triggerDate			REAL,
+	action				TEXT,
+	email				TEXT,
+	relativeDate		REAL,
+	sound				TEXT,
+<<<<<<< .mine
+	url					TEXT);
+
+INSERT INTO tasks    VALUES(1, '', 'Test iTask', '', 1 , 1228780800, 'Work', 'http://www.apple.com', 'Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+=======
+	url					TEXT);>>>>>>> .r64

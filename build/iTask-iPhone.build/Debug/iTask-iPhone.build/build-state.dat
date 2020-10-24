@@ -1,0 +1,363 @@
+TiTask-iPhone
+v7
+r1
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/AlarmEditingView.xib
+c00000000496BAC7E00000000000030AA
+t1231793278
+s12458
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/AlarmTypeListView.xib
+c000000004986094400000000000020E9
+t1233520964
+s8425
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/CalendarList.xib
+c00000000498072480000000000002267
+t1233154632
+s8807
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/Classes/QuickTaskView.xib
+c0000000049484228000000000000229D
+t1229472296
+s8861
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/DateEditorView.xib
+c00000000494747A20000000000003DF4
+t1229408162
+s15860
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/Default.png
+c00000000494932B600000000000028EA
+t1229533878
+s10474
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/DeleteCompletedTasksListView.xib
+c00000000498312C0000000000000228B
+t1233326784
+s8843
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/DueDateListView.xib
+c000000004983AB320000000000002279
+t1233365810
+s8825
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/EditingView.xib
+c00000000494705340000000000003D9D
+t1229391156
+s15773
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/ITaskDB.sql
+c000000004946C7A0000000000000019B
+t1229375392
+s411
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/InfoView.xib
+c00000000496BC0DE00000000000032BC
+t1231798494
+s12988
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/MainWindow.xib
+c00000000498B75E1000000000000669E
+t1233876449
+s26270
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/PreferencesView.xib
+c00000000498093620000000000001C5F
+t1233163106
+s7263
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/Resources/Localizable.strings
+c000000004969436800000000000005B5
+t1231635304
+s1461
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/Settings.bundle
+c00000000498E2E3200000000000000AA
+t1234054706
+s170
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/SortOrderListView.xib
+c00000000498312A6000000000000226A
+t1233326758
+s8810
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/TaskView.xib
+c00000000495E516E0000000000001B20
+t1230917998
+s6944
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/TextViewEditingController.xib
+c000000004942BDB20000000000003100
+t1229110706
+s12544
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/TimeEditorView.xib
+c0000000049474A160000000000003DF4
+t1229408790
+s15860
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/addTask.png
+c00000000494821F60000000000000D0E
+t1229464054
+s3342
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Info.plist
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/PkgInfo
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/AlarmEditingView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/AlarmTypeListView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/CalendarList.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/DateEditorView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/Default.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/DeleteCompletedTasksListView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/DueDateListView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/EditingView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/ITaskDB.sql
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/InfoView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/Localizable.strings
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/MainWindow.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/PreferencesView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/QuickTaskView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/Settings.bundle
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/SortOrderListView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/TaskView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/TextViewEditingController.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/TimeEditorView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/addTask.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/checked.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/deletetask.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/iTask.db
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/iTask.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/info_icon.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/quickadd.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/splash.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/unchecked.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/checked.png
+c00000000493F56520000000000001527
+t1228887634
+s5415
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/deletetask.png
+c000000004941FE6C000000000000178E
+t1229061740
+s6030
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/iTask.db
+c0000000049441E840000000000001000
+t1229201028
+s4096
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/iTask.png
+c00000000494059740000000000002355
+t1228953972
+s9045
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/info_icon.png
+c00000000494929CC0000000000000DE3
+t1229531596
+s3555
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/quickadd.png
+c0000000049414F12000000000000157A
+t1229016850
+s5498
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/splash.png
+c00000000494932B600000000000028EA
+t1229533878
+s10474
+
+N/Users/denis2/Desktop/iTask-iPhone 20090206-1/unchecked.png
+c0000000049414EF400000000000005BE
+t1229016820
+s1470
+
+NInfo.plist
+c00000000494EBB78000000000000039A
+t1229896568
+s922
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/AlarmEditingView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/AlarmTypeListView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/CalendarList.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/Classes/QuickTaskView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/DateEditorView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/DeleteCompletedTasksListView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/DueDateListView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/EditingView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/InfoView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/MainWindow.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/PreferencesView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/SortOrderListView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/TaskView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/TextViewEditingController.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090206-1/TimeEditorView.xib"
+r0
+
+CCopyStringsFile "/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Resources/Localizable.strings" Resources/Localizable.strings
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/Default.png Default.png
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/ITaskDB.sql ITaskDB.sql
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/Settings.bundle Settings.bundle
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/addTask.png addTask.png
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/checked.png checked.png
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/deletetask.png deletetask.png
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/iTask.db iTask.db
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/iTask.png iTask.png
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/info_icon.png info_icon.png
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/quickadd.png quickadd.png
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/splash.png splash.png
+r0
+
+CCpResource build/Debug/iTask-iPhone.app/Contents/Resources/unchecked.png unchecked.png
+r0
+
+CProcessInfoPlistFile "/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app/Contents/Info.plist" Info.plist
+r0
+
+CTouch "/Users/denis2/Desktop/iTask-iPhone 20090206-1/build/Debug/iTask-iPhone.app"
+r0
+

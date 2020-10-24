@@ -1,0 +1,457 @@
+//
+//  TaskListViewController.m
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/5/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import "TaskListViewController.h"
+#import	"iTaskAppDelegate.h"
+#import "TaskViewController.h"
+#import "AddTaskViewController.h"
+#import "Task.h"
+#import "TaskListCell.h"
+#import "QuickTaskView.h"
+
+// Private interface for MasterViewController - internal only methods.
+@interface TaskListViewController ()
+
+@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) UINavigationController *addNavigationController;
+@property (nonatomic, retain) TaskViewController *taskViewController;
+@property (nonatomic, retain) AddTaskViewController *addTaskViewController;
+@property (nonatomic, retain) UIView	*addTaskButtonsView;
+@property (nonatomic, retain) UIBarButtonItem	*saveButtonItem;
+@end
+
+@implementation TaskListViewController
+
+@synthesize tableView, addNavigationController, taskViewController, addTaskViewController,addTaskButtonsView, saveButtonItem ;
+
++ (UIButton *)buttonWithTitle:	(NSString *)title
+					   target:(id)target
+					 selector:(SEL)selector
+						frame:(CGRect)frame
+						image:(UIImage *)image
+				 imagePressed:(UIImage *)imagePressed
+				darkTextColor:(BOOL)darkTextColor
+{	
+	UIButton *button = [[UIButton alloc] initWithFrame:frame];
+	// or you can do this:
+	//		UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	//		button.frame = frame;
+	
+	button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	
+	[button setTitle:title forState:UIControlStateNormal];	
+	if (darkTextColor)
+	{
+		[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	}
+	else
+	{
+		[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	}
+	
+	UIImage *newImage = [image stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+	[button setBackgroundImage:newImage forState:UIControlStateNormal];
+	
+	UIImage *newPressedImage = [imagePressed stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+	[button setBackgroundImage:newPressedImage forState:UIControlStateHighlighted];
+	
+	[button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+	
+    // in case the parent view draws with a custom color or gradient, use a transparent color
+	button.backgroundColor = [UIColor clearColor];
+	
+	return button;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder{
+    if (self = [super initWithCoder:decoder]) {
+        // Title displayed by the navigation controller.
+        self.title = @"iTask List";
+        
+		// initing the loading view
+		CGRect frame = CGRectMake(0.0, 0.0, 110.0, 50.0);
+		UIView *addTaskButtons = [[UIView alloc] initWithFrame:frame];
+		
+		//	addTaskButtons.backgroundColor = [UIColor redColor];
+		
+		UIImage *buttonBackground = [UIImage imageNamed:@"quickadd.png"];
+		UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+		buttonBackgroundPressed = nil;
+		
+		// add the quick task button
+		CGRect buttonFrame = CGRectMake(30.0, 10.0, 33.0, 29.0);
+		quickTaskButton = [TaskListViewController buttonWithTitle:@""
+														   target:self
+														 selector:@selector(quickAddTask:)
+															frame:buttonFrame
+															image:buttonBackground
+													 imagePressed:buttonBackgroundPressed
+													darkTextColor:YES];
+	//	[quickTaskButton setImage:[UIImage imageNamed:@"UIButton_custom.png"] forState:UIControlStateNormal];
+		[addTaskButtons addSubview:quickTaskButton];
+				
+		buttonBackground = [UIImage imageNamed:@"addTask.png"];
+		//add the add task button
+		buttonFrame = CGRectMake(75.0, 10.0, 33.0, 29.0);
+		addTaskButton = [TaskListViewController buttonWithTitle:@""
+														 target:self
+													   selector:@selector(addTask:)
+														  frame:buttonFrame
+														  image:buttonBackground
+												   imagePressed:buttonBackgroundPressed
+												  darkTextColor:YES];
+		
+	
+		[addTaskButtons addSubview:addTaskButton];		
+		self.addTaskButtonsView = addTaskButtons;
+		
+		// initing the bar button
+		UIBarButtonItem *addButtonsView = [[UIBarButtonItem alloc] initWithCustomView:addTaskButtons];
+		addButtonsView.target = self;
+		self.navigationItem.rightBarButtonItem = addButtonsView;
+		
+    }
+    return self;
+}
+
+
+- (void)dealloc {
+    // Release allocated resources.
+    [tableView release];
+    [addNavigationController release];
+    [super dealloc];
+}
+
+// Set up the user interface.
+- (void)viewDidLoad {
+	// self.navigationItem.leftBarButtonItem = self.editButtonItem;
+}
+
+// Update the table before the view displays.
+- (void)viewWillAppear:(BOOL)animated {
+    
+	iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	[appDelegate updateTaskList];
+	[self.tableView reloadData];
+}
+
+
+- (IBAction)completeChanged:(id)sender{
+
+	iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	[appDelegate updateTaskList];
+	[self.tableView reloadData];
+	
+}
+
+- (IBAction)quickAddTask:(id)sender {
+
+	//	Display the quick task view
+	[self.view addSubview:quickTaskView];
+	
+	// Repositions and resizes the view.
+	CGRect tableRect = CGRectMake(0, 80, 320, 292);
+	self.tableView.bounds = tableRect;	
+	
+	quickTaskView.titleField.clearButtonMode = UITextFieldViewModeWhileEditing;
+	quickTaskView.titleField.font = [UIFont systemFontOfSize:18.0];
+	
+//	self.navigationItem.leftBarButtonItem = cancelButtonItem;
+	
+	//disable row selecting
+	noRowSelecting = TRUE;
+	
+	//Reload the table view
+	[self.tableView reloadData];
+	
+	CGRect frame = [self.tableView bounds];
+	frame = CGRectMake(0.0, 0.0, frame.size.width, 10);
+	[self.tableView scrollRectToVisible:frame animated:NO];
+	
+	
+	[self.tableView setNeedsDisplay];
+
+	//bring up the keyboard
+	[quickTaskView.titleField becomeFirstResponder];
+	
+	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] init];
+	cancelButton.title = @"Cancel";
+	cancelButton.target = self;
+	cancelButton.action = @selector(cancel:);
+	self.navigationItem.leftBarButtonItem = cancelButton;
+	[cancelButton release];
+}
+
+- (void)removeQuickTaskView
+{
+	noRowSelecting = FALSE;	
+	[quickTaskView removeFromSuperview];
+	
+	// Repositions and resizes the view.
+	CGRect tableRect = CGRectMake(0, 0, 320, 372);
+	self.tableView.bounds = tableRect;
+
+	//Reload the table view
+	[self.tableView reloadData];
+	
+	 self.navigationItem.leftBarButtonItem = nil;
+}
+
+- (IBAction)cancel:(id)sender{
+	
+	[quickTaskView.titleField resignFirstResponder];
+	[self removeQuickTaskView];
+}
+
+- (IBAction)save:(id)sender{
+	
+	iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	NSNumber *priority = appDelegate.defaultPriority;
+	NSDate	*dueDate = nil;
+	
+	// create a new task
+	NSDate  *testDate = appDelegate.defaultDueDate;
+	if(testDate)
+	{
+		NSTimeInterval since1970  = [testDate timeIntervalSince1970];
+		dueDate = [NSDate dateWithTimeIntervalSince1970:since1970];
+	}
+	
+	Task* task = [[Task alloc] initWithDueDate:dueDate priority:priority];
+	
+	// set the task title
+//	task.title = taskTitleField.text;
+	// insert the task
+	[appDelegate addTask:task];
+	
+	[self removeQuickTaskView];
+	
+	// initing the bar button
+	UIBarButtonItem *addButtonsView = [[UIBarButtonItem alloc] initWithCustomView:addTaskButtonsView];
+	addButtonsView.target = self;
+	self.navigationItem.rightBarButtonItem = addButtonsView;
+
+	noRowSelecting = FALSE;
+	
+}
+
+
+- (IBAction)addTask:(id)sender {
+    AddTaskViewController *controller = self.addTaskViewController;
+    
+	iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	NSNumber *priority = appDelegate.defaultPriority;
+	NSDate	*dueDate = nil;
+	
+	NSDate  *testDate = appDelegate.defaultDueDate;
+	if(testDate)
+	{
+		NSTimeInterval since1970  = [testDate timeIntervalSince1970];
+		dueDate = [NSDate dateWithTimeIntervalSince1970:since1970];
+	}
+	
+    if (addNavigationController == nil) {
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        self.addNavigationController = navController;
+        [navController release];
+    }
+	
+	controller.task = [[Task alloc] initWithDueDate:dueDate priority:priority];
+	controller.numRows = 3;
+    [self.navigationController presentModalViewController:addNavigationController animated:YES];
+    [controller setEditing:NO animated:NO];
+}
+
+
+- (TaskViewController *)taskViewController {
+    // Instantiate the task view controller if necessary.
+    if (taskViewController == nil) {
+        taskViewController = [[TaskViewController alloc] initWithNibName:@"TaskView" bundle:nil];
+    }
+    return taskViewController;
+}
+
+- (AddTaskViewController *)addTaskViewController {
+    // Instantiate the add view controller if necessary.
+    if (addTaskViewController == nil) {
+        addTaskViewController = [[AddTaskViewController alloc] initWithNibName:@"TaskView" bundle:nil];
+    }
+    return addTaskViewController;
+}
+
+#pragma mark Table Delegate and Data Source Methods
+// These methods are all part of either the UITableViewDelegate or UITableViewDataSource protocols.
+
+// Thie number of table sections are determined by the users preferences.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tv {
+	iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	return appDelegate.tasksArray.count;
+}
+
+// For each section there is an array of tasks.
+- (NSInteger)tableView:(UITableView *)tv numberOfRowsInSection:(NSInteger)section {
+    iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+	NSDictionary *item = [appDelegate.tasksArray objectAtIndex:section];
+	NSArray *taskItems = [item objectForKey:@"Data"];
+	
+	
+	return taskItems.count;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+	
+	iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	if(appDelegate.showTableHeaders){
+		NSDictionary *item = [appDelegate.tasksArray objectAtIndex:section];
+		NSArray *taskItems = [item objectForKey:@"Data"];
+		if ([taskItems count] > 0)
+			return 24.0f;
+		else
+			return 0.0f;
+	}else{
+		return 0.0f;
+	}
+	
+	return 24.0f;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+
+	iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+	NSString *headerTitle;
+	
+	if(appDelegate.showTableHeaders){
+		NSDictionary *item = [appDelegate.tasksArray objectAtIndex:section];
+		headerTitle =  [item objectForKey:@"Heading"];
+	}else{
+		headerTitle = @"";
+	}
+
+	return headerTitle;
+}
+ 
+- (UITableViewCellAccessoryType)tableView:(UITableView *)tv accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath {
+    // Show the disclosure indicator if editing.
+    return UITableViewCellAccessoryDisclosureIndicator;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+	//static NSString *kTaskListCellID = @"TaskListCellID";
+	
+	TaskListCell *cell = (TaskListCell *)[[[TaskListCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"TASK_CELL"] autorelease];
+    
+	
+	// Retrieve the task object matching the row from the application delegate's array.
+    iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSDictionary *item = [appDelegate.tasksArray objectAtIndex:indexPath.section];
+	NSArray *taskItems = [item objectForKey:@"Data"];
+	Task *task = (Task *)[taskItems objectAtIndex:indexPath.row];
+	
+    cell.task = task;
+	
+	[cell.checkButton addTarget:self action:@selector(completeChanged:)  forControlEvents:UIControlEventTouchUpInside];
+	
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	[tv deselectRowAtIndexPath:indexPath animated:YES];	
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+	if(noRowSelecting == TRUE) return indexPath;
+	
+	// Retrieve the task object matching the row from the application delegate's array.
+    iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSDictionary *item = [appDelegate.tasksArray objectAtIndex:indexPath.section];
+	NSArray *taskItems = [item objectForKey:@"Data"];
+	Task *task = (Task *)[taskItems objectAtIndex:indexPath.row];
+	
+    TaskViewController *controller = self.taskViewController;
+
+    // Set the detail controller's inspected item to the currently-selected task.
+    controller.task = task;
+	controller.numRows = 4;
+    // "Push" the detail view on to the navigation controller's stack.
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller setEditing:NO animated:NO];
+    return nil;
+}
+ 
+// revisit this one!!!!!
+- (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+	iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+    // If row is deleted, remove it from the list.
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Find the task at the deleted row, and remove from application delegate's array.
+        Task *task = [appDelegate.tasks objectAtIndex:indexPath.row];
+        
+		// Animate the deletion from the table.
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+		 withRowAnimation:UITableViewRowAnimationBottom];
+		
+		[appDelegate removeTask:task];
+		
+		[self.tableView reloadData];
+        
+    }
+}
+
+
+
+// This method catches the return action
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	
+	
+	iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	NSNumber *priority = appDelegate.defaultPriority;
+	NSDate	*dueDate = nil;
+	
+	// create a new task
+	NSDate  *testDate = appDelegate.defaultDueDate;
+	if(testDate)
+	{
+		NSTimeInterval since1970  = [testDate timeIntervalSince1970];
+		dueDate = [NSDate dateWithTimeIntervalSince1970:since1970];
+	}
+	
+	if(textField.text.length > 0){
+		Task* task = [[Task alloc] initWithDueDate:dueDate priority:priority];
+		// set the task title
+		task.title = textField.text;
+		// insert the task if there is a valid titke
+		[appDelegate addTask:task];
+	}
+	
+	[textField resignFirstResponder];
+	
+	[self removeQuickTaskView];	
+	
+	
+	return YES;
+}
+
+@end

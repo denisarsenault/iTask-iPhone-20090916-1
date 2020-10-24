@@ -1,0 +1,306 @@
+//
+//  AlarmCell.m
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/12/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import "AlarmCell.h"
+#import "Alarm.h"
+
+@implementation AlarmCell
+
+@synthesize alarm, label, relativeDateLabel,  dateOffset, timeLabel, emailLabel, soundLabel, urlLabel, alarmActionLabel, dueDate, dateFormatter;
+
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier])
+	{
+		self.target = self;
+		self.accessoryType = UITableViewCellAccessoryNone;
+		self.accessoryAction = @selector(onClick:);
+		
+		// cell's  label
+		label = [[UILabel alloc] initWithFrame:CGRectZero];
+		label.backgroundColor = [UIColor clearColor];
+		label.opaque = NO;
+		label.textColor = [UIColor blackColor];
+		label.highlightedTextColor = [UIColor whiteColor];
+		label.font = [UIFont boldSystemFontOfSize:14.0];
+		label.text = NSLocalizedString( @"Alarm", @"");
+		[self.contentView addSubview:label];
+		
+		
+		//action value
+		alarmActionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		alarmActionLabel.backgroundColor = [UIColor clearColor];
+		alarmActionLabel.opaque = NO;
+		alarmActionLabel.textColor = [UIColor darkGrayColor];
+		alarmActionLabel.highlightedTextColor = [UIColor whiteColor];
+		alarmActionLabel.font = [UIFont systemFontOfSize:14.0];
+		alarmActionLabel.text = NSLocalizedString( @"None", @"");
+		[self.contentView addSubview:alarmActionLabel];
+		
+		
+		
+		// relative date  value
+		dateOffset = [[UILabel alloc] initWithFrame:CGRectZero];
+		dateOffset.backgroundColor = [UIColor clearColor];
+		dateOffset.opaque = NO;
+		dateOffset.textColor = [UIColor darkGrayColor];
+		dateOffset.highlightedTextColor = [UIColor whiteColor];
+		dateOffset.font = [UIFont systemFontOfSize:14.0];
+		[self.contentView addSubview:dateOffset];
+		
+		
+		
+		// relative date  value
+		relativeDateLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		relativeDateLabel.backgroundColor = [UIColor clearColor];
+		relativeDateLabel.opaque = NO;
+		relativeDateLabel.textColor = [UIColor darkGrayColor];
+		relativeDateLabel.highlightedTextColor = [UIColor whiteColor];
+		relativeDateLabel.font = [UIFont systemFontOfSize:14.0];
+		[self.contentView addSubview:relativeDateLabel];
+		
+		// time  value
+		timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		timeLabel.backgroundColor = [UIColor clearColor];
+		timeLabel.opaque = NO;
+		timeLabel.textColor = [UIColor darkGrayColor];
+		timeLabel.highlightedTextColor = [UIColor whiteColor];
+		timeLabel.font = [UIFont systemFontOfSize:14.0];
+		[self.contentView addSubview:timeLabel];
+		
+		
+		// Create a date formatter to convert the date to a string format.
+		dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+	}
+	return self;
+}
+
+- (void)dealloc {
+    // Release allocated resources.
+    [alarmActionLabel release];
+	[label release];
+	[dateOffset release];
+	[relativeDateLabel release];
+	[timeLabel release];
+	[emailLabel release];
+    [super dealloc];
+}
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+	
+    CGRect contentRect = [self.contentView bounds];
+	
+	// layout the label
+	CGRect frame = CGRectMake(contentRect.origin.x + 7.0, 5.0, 100, 30.0);
+	label.frame = frame;
+	
+	// layout the alarmActionLabel field
+	frame = CGRectMake(contentRect.size.width - 180, 5.0, contentRect.size.width - 100, 30.0);
+	alarmActionLabel.frame = frame;
+	
+	if(alarm){
+		alarmActionLabel.text = [self getActionString];
+		relativeDateLabel.text = [self getRelativeDateString];
+		timeLabel.text = [self getTimeString];
+		emailLabel.text = [self getEmailString];
+		soundLabel.text = [self getSoundString];
+		urlLabel.text = [self getUrlString];
+		
+		
+		relativeDateLabel.text = @"relativeDate";
+		timeLabel.text = @"time";
+		emailLabel.text = @"john@doe.com";
+		soundLabel.text = @"Basso.wav";
+		urlLabel.text = @"/user/home/stuff.doc";
+		
+		// layout the dateLabel field
+		frame = CGRectMake(contentRect.size.width - 180, 35.0, 100, 30.0);
+		relativeDateLabel.frame = frame;		
+		
+<<<<<<< .mine
+		// The alarm action determins which of the following fields will appear below, and their relative position.
+		switch (alarmActionType) {
+				
+			case alarmActionNone:
+				break;
+				
+			case alarmActionMessage:
+
+				// layout the relativeDateLabel field
+				frame = CGRectMake(contentRect.size.width - 180, 65.0, 200, 30.0);
+				relativeDateLabel.frame = frame;
+				
+				// layout the timeLabel field
+				frame = CGRectMake(contentRect.size.width - 180, 95.0, 200, 30.0);
+				timeLabel.frame = frame;
+				
+				break;
+				
+			case alarmActionEmail:
+				
+				// layout the emailLabel recipient field
+				frame = CGRectMake(contentRect.size.width - 180, 65.0, 80, 30.0);
+				emailLabel.frame = frame;
+				
+				// layout the relativeDateLabel field
+				frame = CGRectMake(contentRect.size.width - 180, 95.0, 80, 30.0);
+				relativeDateLabel.frame = frame;
+
+				
+				// layout the timeLabel field
+				frame = CGRectMake(contentRect.size.width - 180, 125.0, 80, 30.0);
+				timeLabel.frame = frame;
+
+				break;
+				
+			case alarmActionRunScript:
+				
+				// layout the urlLabel  field
+				frame = CGRectMake(contentRect.size.width - 180, 65.0, 80, 30.0);
+				urlLabel.frame = frame;
+				
+				// layout the timeLabel field
+				frame = CGRectMake(contentRect.size.width - 180, 95.0, 80, 30.0);
+				relativeDateLabel.frame = frame;
+				
+				
+				// layout the timeLabel field
+				frame = CGRectMake(contentRect.size.width - 180, 125.0, 80, 30.0);
+				timeLabel.frame = frame;
+				break;
+				
+			case alarmActionMessageWithSound:
+				
+				// layout the soundLabel  field
+				frame = CGRectMake(contentRect.size.width - 180, 65.0, 80, 30.0);
+				soundLabel.frame = frame;
+				
+				// layout the timeLabel field
+				frame = CGRectMake(contentRect.size.width - 180, 95.0, 80, 30.0);
+				relativeDateLabel.frame = frame;
+				
+				
+				// layout the timeLabel field
+				frame = CGRectMake(contentRect.size.width - 180, 125.0, 80, 30.0);
+				timeLabel.frame = frame;
+				break;
+				break;
+				
+			default:
+				break;
+		}
+=======
+		dateLabel.text = alarm.relativeDate;
+>>>>>>> .r92
+		
+		
+	}
+	
+}
+
+// the alarm setter
+// we implement this because the table cell values need
+// to be updated when this property changes, and this allows
+// for the changes to be encapsulated
+- (void)setAlarm:(Alarm *)anAlarm {
+	
+	alarm = anAlarm;
+	
+	// determine the alarm action type
+	
+	alarmActionType = alarmActionNone;
+	if([alarm.action isEqualToString:@"DISPLAY"]){	
+		alarmActionType = alarmActionMessage;		
+	}else if([alarm.action isEqualToString:@"EMAIL"]){		
+		alarmActionType = alarmActionEmail;	
+	} else if([alarm.action isEqualToString:@"PROCEDURE"]){		
+		alarmActionType = alarmActionRunScript;	
+	}else if([alarm.action isEqualToString:@"AUDIO"]){		
+		alarmActionType = alarmActionMessageWithSound;	
+	}	
+}
+
+
+-(NSString*) getActionString{
+	
+	NSString* actionString;
+	
+	switch (alarmActionType) {
+			
+		case alarmActionNone:
+			actionString = @"None";
+			break;
+			
+		case alarmActionMessage:
+			actionString = @"Message";
+			break;
+			
+		case alarmActionEmail:
+			actionString = @"Email";
+			break;
+			
+		case alarmActionRunScript:
+			actionString =@"Open File";
+			break;
+			
+		case alarmActionMessageWithSound:
+			actionString = @"Message with sound";
+			break;
+			
+		default:
+			actionString = @"None";
+			break;
+			break;
+	}
+
+	
+	return actionString;
+}
+
+-(NSString*) getRelativeDateString{
+	
+	// the relative date is the due date converted to a number
+	// plus the relative date
+	NSString* dateString = @"";
+	
+	NSTimeInterval offset = [alarm.relativeDate doubleValue]; 
+	
+	NSDate*	relativeDate  = [[NSDate alloc] initWithTimeInterval:offset sinceDate:dueDate];
+	dateString = [dateFormatter stringFromDate:relativeDate];
+	
+	
+	[relativeDate release];
+	
+	return dateString;
+}
+
+-(NSString*) getAbsoluteDateString{
+	return @"";
+}
+
+
+-(NSString*) getTimeString{
+	return @"";
+}
+
+-(NSString*) getEmailString{
+	return alarm.email;
+}
+
+-(NSString*) getSoundString{
+	return alarm.sound;
+}
+
+-(NSString*) getUrlString{
+	return alarm.url;
+}
+
+@end

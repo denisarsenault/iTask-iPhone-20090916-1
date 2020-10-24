@@ -1,0 +1,68 @@
+//
+//  AddTaskViewController.m
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/5/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import "AddTaskViewController.h"
+#import "Task.h"
+#import "iTaskAppDelegate.h"
+#import "TitleCell.h"
+
+@implementation AddTaskViewController
+
+
+- (void)viewDidLoad {
+    // Override the DetailViewController viewDidLoad with different navigation bar items and title
+    self.title = NSLocalizedString(@"New iTask", @"");
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
+																						   target:self action:@selector(cancel:)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave 
+																							target:self action:@selector(save:)] autorelease];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+	
+    // Conditionally enable the "Save" button
+    self.navigationItem.rightBarButtonItem.enabled = (self.task.title && self.task.title.length > 0 );
+	
+	CGRect frame = [self.tableView bounds];
+	frame = CGRectMake(0.0, 0.0, frame.size.width, 10);
+	[self.tableView scrollRectToVisible:frame animated:NO];
+
+	[self.tableView setNeedsDisplay];
+}
+
+- (IBAction)cancel:(id)sender {
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)save:(id)sender {
+    iTaskAppDelegate *appDelegate = (iTaskAppDelegate *)[[UIApplication sharedApplication] delegate];
+    // Add the book to the global array of tasks
+    [appDelegate addTask:self.task];
+	[self.task setModified:YES];
+    // Dismiss the modal view to return to the main list
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
+#pragma mark Custom Cell Control Delegete Methods
+
+// This method catches the return action
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	// set the title based on current cell contents.
+	task.title = titleCell.titleField.text;
+	[textField resignFirstResponder];
+	
+	 self.navigationItem.rightBarButtonItem.enabled = (self.task.title && self.task.title.length > 0 );
+	
+	return YES;
+}
+
+@end

@@ -1,0 +1,33 @@
+//
+//  TaskListView.m
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/7/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import "TaskListView.h"
+
+
+@implementation TaskListView
+
+
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        // Initialization code
+    }
+    return self;
+}
+
+
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+
+
+- (void)dealloc {
+    [super dealloc];
+}
+
+
+@end

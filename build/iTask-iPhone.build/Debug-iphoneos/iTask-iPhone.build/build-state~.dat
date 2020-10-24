@@ -1,0 +1,1438 @@
+TiTask-iPhone
+v7
+r0
+t283809618.468293
+cCheck dependencies
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk
+c000000004B2C2A870000000000000110
+t1261185671
+s272
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/ResourceRules.plist
+c000000004ABDB88400000000000001E5
+t1253947524
+s485
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/System/Library/Frameworks/AddressBook.framework/AddressBook
+c000000004ABDC857000000000009D700
+t1253951575
+s644864
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/System/Library/Frameworks/AddressBook.framework/Headers/AddressBook.h
+c000000004ABDC84F0000000000000425
+t1253951567
+s1061
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+c000000004ABDB8DC0000000000452FD0
+t1253947612
+s4534224
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004ABDBA1300000000005F4900
+t1253947923
+s6244608
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004ABDBDCF0000000000501370
+t1253948879
+s5247856
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004ABDBDA40000000000001355
+t1253948836
+s4949
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004ABDD0D10000000000000788
+t1253953745
+s1928
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004ABDD2250000000001B3F450
+t1253954085
+s28570704
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/usr/include/sqlite3.h
+c000000004ABDB700000000000003D86F
+t1253947136
+s252015
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/usr/lib/libsqlite3.0.dylib
+c000000004ABDB70C000000000010BF50
+t1253947148
+s1097552
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/AlarmEditingView.xib
+c00000000496BAC7E00000000000030AA
+t1231793278
+s12458
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/AlarmEditingViewController.h
+c0000000049615A9E00000000000002BF
+t1231116958
+s703
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/AlarmEditingViewController.m
+c0000000049615A9E0000000000001658
+t1231116958
+s5720
+i"AlarmEditingViewController.h"
+i"Alarm.h"
+i"LabelValueCell.h"
+i"DateTimeEditorViewController.h"
+i"AlarmTypeViewControler.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/AlarmTypeListView.xib
+c000000004986094400000000000020E9
+t1233520964
+s8425
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/CalendarList.xib
+c00000000498072480000000000002267
+t1233154632
+s8807
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/CalendarListController.h
+c0000000049615A9E0000000000000216
+t1231116958
+s534
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/CalendarListController.m
+c0000000049615A9E0000000000000AEB
+t1231116958
+s2795
+i"CalendarListController.h"
+i"CalendarName.h"
+i"Task.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/CalendarName.h
+c0000000049615A9E00000000000001CF
+t1231116958
+s463
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/CalendarName.m
+c0000000049615A9E00000000000001AB
+t1231116958
+s427
+i"CalendarName.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/../DefaultDueDateCell.m
+c000000004985BF7400000000000006FD
+t1233502068
+s1789
+i"DefaultDueDateCell.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/AddTaskViewController.h
+c00000000498C537F0000000000000573
+t1233933183
+s1395
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/AddTaskViewController.m
+c00000000498C644800000000000054E8
+t1233937480
+s21736
+i"AddTaskViewController.h"
+i"TitleCell.h"
+i"LabelValueCell.h"
+i"SegmentedControlCell.h"
+i"DateFieldCell.h"
+i"AlarmCell.h"
+i"TextViewCell.h"
+i"Task.h"
+i"Alarm.h"
+i"TaskListViewController.h"
+i"EditingViewController.h"
+i"AlarmEditingViewController.h"
+i"TextViewEditingController.h"
+i"CalendarListController.h"
+i"CustomUISwitch.h"
+i"iTaskAppDelegate.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/Alarm.h
+c0000000049615A9E0000000000000AF3
+t1231116958
+s2803
+i<Foundation/Foundation.h>
+i<sqlite3.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/Alarm.m
+c0000000049615A9E0000000000004424
+t1231116958
+s17444
+i"Alarm.h"
+i"Task.h"
+i"iTaskAppDelegate.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/AlarmCell.h
+c0000000049615A9E0000000000000431
+t1231116958
+s1073
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/AlarmCell.m
+c000000004984F09600000000000019CF
+t1233449110
+s6607
+i"AlarmCell.h"
+i"Alarm.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/AlarmTypeViewControler.h
+c0000000049615A9E0000000000000214
+t1231116958
+s532
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/AlarmTypeViewControler.m
+c0000000049615A9E0000000000000CAA
+t1231116958
+s3242
+i"AlarmTypeViewControler.h"
+i"Alarm.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/CustomUISwitch.h
+c0000000049615A9E00000000000001CD
+t1231116958
+s461
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/CustomUISwitch.m
+c0000000049615A9E00000000000002E2
+t1231116958
+s738
+i"CustomUISwitch.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/DateFieldCell.h
+c0000000049615A9E0000000000000168
+t1231116958
+s360
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/DateFieldCell.m
+c0000000049864C7400000000000006F3
+t1233538164
+s1779
+i"DateFieldCell.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/DeleteCompletedCell.h
+c00000000497A12AC0000000000000170
+t1232736940
+s368
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/DeleteCompletedCell.m
+c00000000498625D000000000000006FF
+t1233528272
+s1791
+i"DeleteCompletedCell.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/DeleteCompletedTasksCell.h
+c000000004985BEC6000000000000017A
+t1233501894
+s378
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/DeleteCompletedTasksCell.m
+c000000004985BF740000000000000711
+t1233502068
+s1809
+i"DeleteCompletedTasksCell.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/EditingViewController.h
+c00000000496166AC00000000000003AF
+t1231120044
+s943
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/EditingViewController.m
+c000000004966CD0E0000000000000A72
+t1231473934
+s2674
+i"EditingViewController.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/InfoViewController.h
+c0000000049615A9E00000000000000D8
+t1231116958
+s216
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/InfoViewController.m
+c00000000496BBFDE00000000000005E9
+t1231798238
+s1513
+i"InfoViewController.h"
+i"iTaskAppDelegate.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/ItaskStrings.h
+c00000000496946AE0000000000000064
+t1231636142
+s100
+i"SBItask.h"
+i"NSObject+SBItask.h"
+i"NSString+SBItask.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/LabelValueCell.h
+c0000000049615A9E000000000000016A
+t1231116958
+s362
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/LabelValueCell.m
+c000000004985E104000000000000074D
+t1233510660
+s1869
+i"LabelValueCell.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/NSObject+SBItask.h
+c000000004968DDD0000000000000026D
+t1231609296
+s621
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/NSString+SBItask.h
+c000000004968DE020000000000000141
+t1231609346
+s321
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/QuickTaskView.h
+c0000000049615A9E0000000000000133
+t1231116958
+s307
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/QuickTaskView.m
+c0000000049615A9E00000000000001D2
+t1231116958
+s466
+i"QuickTaskView.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/QuickTaskView.xib
+c0000000049484228000000000000229D
+t1229472296
+s8861
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/RelativeDateViewController.h
+c0000000049615A9E00000000000001DE
+t1231116958
+s478
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/RelativeDateViewController.m
+c000000004973F6960000000000000A47
+t1232336534
+s2631
+i"RelativeDateViewController.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/SBItask.h
+c000000004968DE660000000000000E1B
+t1231609446
+s3611
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/SegmentedControlCell.h
+c0000000049615A9E0000000000000213
+t1231116958
+s531
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/SegmentedControlCell.m
+c0000000049615A9E0000000000000670
+t1231116958
+s1648
+i"SegmentedControlCell.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/SortOrderTasksCell.h
+c000000004985BBCA000000000000016D
+t1233501130
+s365
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/SortOrderTasksCell.m
+c000000004985BF7400000000000006FD
+t1233502068
+s1789
+i"SortOrderTasksCell.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/Task.h
+c000000004982057C0000000000000CC5
+t1233257852
+s3269
+i<Foundation/Foundation.h>
+i<sqlite3.h>
+i"Alarm.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/Task.m
+c00000000498E57990000000000005191
+t1234065305
+s20881
+i"Task.h"
+i"Alarm.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskListCell.h
+c0000000049615A9E0000000000000245
+t1231116958
+s581
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskListCell.m
+c000000004987A4B40000000000001592
+t1233626292
+s5522
+i"TaskListCell.h"
+i"Task.h"
+i"constants.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskListView.h
+c0000000049615A9E00000000000000D8
+t1231116958
+s216
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskListView.m
+c0000000049615A9E00000000000001C5
+t1231116958
+s453
+i"TaskListView.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskListViewController.h
+c000000004989D8AA00000000000004C4
+t1233770666
+s1220
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskListViewController.m
+c00000000498C6448000000000000543A
+t1233937480
+s21562
+i"TaskListViewController.h"
+i"iTaskAppDelegate.h"
+i"TaskViewController.h"
+i"PreferencesViewController.h"
+i"AddTaskViewController.h"
+i"Task.h"
+i"TaskListCell.h"
+i"QuickTaskView.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskViewController.h
+c00000000498B07B40000000000000552
+t1233848244
+s1362
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskViewController.m
+c00000000498C644800000000000053C4
+t1233937480
+s21444
+i"TaskViewController.h"
+i"TitleCell.h"
+i"LabelValueCell.h"
+i"SegmentedControlCell.h"
+i"DateFieldCell.h"
+i"AlarmCell.h"
+i"TextViewCell.h"
+i"Task.h"
+i"Alarm.h"
+i"TaskListViewController.h"
+i"EditingViewController.h"
+i"AlarmEditingViewController.h"
+i"TextViewEditingController.h"
+i"CalendarListController.h"
+i"CustomUISwitch.h"
+i"iTaskAppDelegate.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TextViewCell.h
+c0000000049615A9E0000000000000172
+t1231116958
+s370
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TextViewCell.m
+c00000000498626040000000000000730
+t1233528324
+s1840
+i"TextViewCell.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TextViewEditingController.h
+c0000000049615A9E0000000000000242
+t1231116958
+s578
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TextViewEditingController.m
+c0000000049615A9E0000000000000613
+t1231116958
+s1555
+i"TextViewEditingController.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TitleCell.h
+c0000000049615A9E0000000000000175
+t1231116958
+s373
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TitleCell.m
+c00000000498793E20000000000000784
+t1233621986
+s1924
+i"TitleCell.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/iTaskAppDelegate.h
+c00000000498790140000000000000E21
+t1233621012
+s3617
+i<UIKit/UIKit.h>
+i<sqlite3.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/iTaskAppDelegate.m
+c000000004AB12BB50000000000005FA9
+t1253125045
+s24489
+i"iTaskAppDelegate.h"
+i"TaskListViewController.h"
+i"PreferencesViewController.h"
+i"InfoViewController.h"
+i"Task.h"
+i"constants.h"
+i"Alarm.h"
+i"CalendarName.h"
+i"iTaskSyncContacts.h"
+i"ItaskStrings.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DateEditorView.xib
+c00000000494747A20000000000003DF4
+t1229408162
+s15860
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DateTimeEditorViewController.h
+c0000000049615A9E000000000000039B
+t1231116958
+s923
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DateTimeEditorViewController.m
+c000000004965556C0000000000000B35
+t1231377772
+s2869
+i"DateTimeEditorViewController.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Default.png
+c00000000494932B600000000000028EA
+t1229533878
+s10474
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DefaultDueDateCell.h
+c000000004985BEC6000000000000016E
+t1233501894
+s366
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DefaultDueDateListController.h
+c00000000498256520000000000000367
+t1233278546
+s871
+i<UIKit/UIKit.h>
+i"DefaultDueDateName.h"
+i"PreferencesViewController.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DefaultDueDateListController.m
+c0000000049830C900000000000000F6C
+t1233325200
+s3948
+i"DefaultDueDateListController.h"
+i"DefaultDueDateName.h"
+i"Task.h"
+i"Preferences.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DefaultDueDateName.h
+c00000000497DF66E00000000000001DB
+t1232991854
+s475
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DefaultDueDateName.m
+c00000000497DFDC000000000000001BD
+t1232993728
+s445
+i"DefaultDueDateName.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DeleteCompletedTasksListController.h
+c0000000049830F9C000000000000038B
+t1233325980
+s907
+i<UIKit/UIKit.h>
+i"DefaultDueDateName.h"
+i"PreferencesViewController.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DeleteCompletedTasksListController.m
+c0000000049833D360000000000000F9A
+t1233337654
+s3994
+i"DeleteCompletedTasksName.h"
+i"Task.h"
+i"DeleteCompletedTasksListController.h"
+i"PreferencesViewController.h"
+i"Preferences.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DeleteCompletedTasksListView.xib
+c00000000498312C0000000000000228B
+t1233326784
+s8843
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DeleteCompletedTasksName.h
+c0000000049833BFC00000000000001E7
+t1233337340
+s487
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DeleteCompletedTasksName.m
+c0000000049833BFC00000000000001CF
+t1233337340
+s463
+i"DeleteCompletedTasksName.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/DueDateListView.xib
+c000000004983AB320000000000002279
+t1233365810
+s8825
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/EditingView.xib
+c00000000494705340000000000003D9D
+t1229391156
+s15773
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/ITaskDB.sql
+c000000004946C7A0000000000000019B
+t1229375392
+s411
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/InfoView.xib
+c00000000496BC0DE00000000000032BC
+t1231798494
+s12988
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/MainWindow.xib
+c000000004AD529C50000000000006A46
+t1255483845
+s27206
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/NSObject+SBItask.h
+c00000000496BACC20000000000000118
+t1231793346
+s280
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/NSObject+SBItask.m
+c000000004968DDEA0000000000000268
+t1231609322
+s616
+i"NSObject+SBItask.h"
+i"SBItask.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/NSString+SBItask.h
+c000000004968DE020000000000000141
+t1231609346
+s321
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/NSString+SBItask.m
+c000000004968DE1A000000000000021F
+t1231609370
+s543
+i"NSString+SBItask.h"
+i"SBItask.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Preferences.h
+c00000000498310FC00000000000006FE
+t1233326332
+s1790
+i<Foundation/Foundation.h>
+i<sqlite3.h>
+i"Alarm.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Preferences.m
+c00000000498310FC00000000000005C2
+t1233326332
+s1474
+i"Preferences.h"
+i"Alarm.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/PreferencesView.xib
+c00000000498093620000000000001C5F
+t1233163106
+s7263
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/PreferencesViewController.h
+c00000000498910550000000000000E75
+t1233719381
+s3701
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/PreferencesViewController.m
+c000000004989A54C0000000000008FC0
+t1233757516
+s36800
+i"PreferencesViewController.h"
+i"TitleCell.h"
+i"LabelValueCell.h"
+i"SegmentedControlCell.h"
+i"DateFieldCell.h"
+i"DefaultDueDateCell.h"
+i"DeleteCompletedTasksCell.h"
+i"SortOrderTasksCell.h"
+i"AlarmCell.h"
+i"TextViewCell.h"
+i"Task.h"
+i"Alarm.h"
+i"TaskListViewController.h"
+i"EditingViewController.h"
+i"AlarmEditingViewController.h"
+i"TextViewEditingController.h"
+i"CalendarListController.h"
+i"DefaultDueDateListController.h"
+i"DeleteCompletedTasksListController.h"
+i"SortOrderListController.h"
+i"CustomUISwitch.h"
+i"DefaultDueDateName.h"
+i"DeleteCompletedTasksName.h"
+i"SortOrderName.h"
+i"Preferences.h"
+i"iTaskAppDelegate.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/QuickTaskViewController.h
+c0000000049664D9E00000000000000F9
+t1231441310
+s249
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/QuickTaskViewController.m
+c0000000049664D9E0000000000000556
+t1231441310
+s1366
+i"QuickTaskViewController.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Resources/Localizable.strings
+c000000004969436800000000000005B5
+t1231635304
+s1461
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/SBItask.h
+c000000004968DE660000000000000E1B
+t1231609446
+s3611
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/SBItask.m
+c00000000496BACC2000000000000543E
+t1231793346
+s21566
+i"SBItask.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Settings.bundle
+c00000000498E2E3200000000000000AA
+t1234054706
+s170
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/SortOrderListController.h
+c0000000049830F4E0000000000000347
+t1233325902
+s839
+i<UIKit/UIKit.h>
+i"DefaultDueDateName.h"
+i"PreferencesViewController.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/SortOrderListController.m
+c0000000049833D360000000000000E34
+t1233337654
+s3636
+i"SortOrderName.h"
+i"Task.h"
+i"SortOrderListController.h"
+i"PreferencesViewController.h"
+i"Preferences.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/SortOrderListView.xib
+c00000000498312A6000000000000226A
+t1233326758
+s8810
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/SortOrderName.h
+c0000000049833ACC00000000000001D1
+t1233337036
+s465
+i<Foundation/Foundation.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/SortOrderName.m
+c0000000049833AE400000000000001AE
+t1233337060
+s430
+i"SortOrderName.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Syncing/iTaskSyncContacts.h
+c00000000496943680000000000000759
+t1231635304
+s1881
+i<Foundation/Foundation.h>
+i<AddressBook/AddressBook.h>
+i"iTaskAppDelegate.h"
+i"Task.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Syncing/iTaskSyncContacts.m
+c00000000498E579900000000000055F4
+t1234065305
+s22004
+i"iTaskSyncContacts.h"
+i"iTaskAppDelegate.h"
+i"Task.h"
+i"CalendarName.h"
+i<AddressBook/AddressBook.h>
+i"ItaskStrings.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/Task.h
+c000000004982057C0000000000000CC5
+t1233257852
+s3269
+i<Foundation/Foundation.h>
+i<sqlite3.h>
+i"Alarm.h"
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/TaskView.xib
+c00000000495E516E0000000000001B20
+t1230917998
+s6944
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/TextViewEditingController.xib
+c000000004942BDB20000000000003100
+t1229110706
+s12544
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/TimeEditorView.xib
+c0000000049474A160000000000003DF4
+t1229408790
+s15860
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/addTask.png
+c00000000494821F60000000000000D0E
+t1229464054
+s3342
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app.dSYM
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/AlarmEditingView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/AlarmTypeListView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/CalendarList.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/DateEditorView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/Default.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/DeleteCompletedTasksListView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/DueDateListView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/EditingView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/ITaskDB.sql
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/Info.plist
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/InfoView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/Localizable.strings
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/MainWindow.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/PkgInfo
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/PreferencesView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/QuickTaskView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/ResourceRules.plist
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/Settings.bundle
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/SortOrderListView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/TaskView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/TextViewEditingController.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/TimeEditorView.nib
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/addTask.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/checked.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/deletetask.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/iTask-iPhone
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/iTask.db
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/iTask.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/info_icon.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/quickadd.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/splash.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/unchecked.png
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/AddTaskViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/Alarm.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/AlarmCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/AlarmEditingViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/AlarmTypeViewControler.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/CalendarListController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/CalendarName.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/CustomUISwitch.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DateFieldCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DateTimeEditorViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DefaultDueDateCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DefaultDueDateListController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DefaultDueDateName.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DeleteCompletedCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DeleteCompletedTasksCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DeleteCompletedTasksListController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DeleteCompletedTasksName.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/EditingViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/InfoViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/LabelValueCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/NSObject+SBItask.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/NSString+SBItask.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/Preferences.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/PreferencesViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/QuickTaskView.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/QuickTaskViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/RelativeDateViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SBItask.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SegmentedControlCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SortOrderListController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SortOrderName.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SortOrderTasksCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/Task.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TaskListCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TaskListView.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TaskListViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TaskViewController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TextViewCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TextViewEditingController.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TitleCell.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/iTask-iPhone.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/iTaskAppDelegate.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/iTaskSyncContacts.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/main.o
+t2
+s0
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/checked.png
+c00000000493F56520000000000001527
+t1228887634
+s5415
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/constants.h
+c0000000049615A9E000000000000009A
+t1231116958
+s154
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/deletetask.png
+c000000004941FE6C000000000000178E
+t1229061740
+s6030
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/iTask.db
+c0000000049441E840000000000001000
+t1229201028
+s4096
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/iTask.png
+c000000004AD9D3A900000000000005C5
+t1255789481
+s1477
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/iTask_iPhone_Prefix.pch
+c00000000493855CA00000000000000C1
+t1228428746
+s193
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/info_icon.png
+c00000000494929CC0000000000000DE3
+t1229531596
+s3555
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/main.m
+c0000000049615A9E0000000000000172
+t1231116958
+s370
+i<UIKit/UIKit.h>
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/quickadd.png
+c0000000049414F12000000000000157A
+t1229016850
+s5498
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/splash.png
+c00000000494932B600000000000028EA
+t1229533878
+s10474
+
+N/Users/denis2/Desktop/iTask-iPhone 20090916-1/unchecked.png
+c0000000049414EF400000000000005BE
+t1229016820
+s1470
+
+N/var/folders/R7/R7xCbJLxF4WJei8-Ce+ZhU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iTask_iPhone_Prefix-cxwljxzeyqcdsbejhvnkkurebyzd/iTask_iPhone_Prefix.pch.gch
+t2
+s0
+
+NInfo.plist
+c00000000494EBB78000000000000039A
+t1229896568
+s922
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies283809694#283809694#0(99"[BEROR]Code Sign error: Provisioning profile 'C2E3646E-1BBE-4373-AEA9-2923429F3D6C' can't be found1(4@91"Code Sign error: Provisioning profile 'C2E3646E-1BBE-4373-AEA9-2923429F3D6C' can't be found283809694#18446744073709551615#0#0(1@0"0(0#1#0"4300885448#0"0#
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/AddTaskViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/AddTaskViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/Alarm.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/Alarm.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/AlarmCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/AlarmCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/AlarmEditingViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/AlarmEditingViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/AlarmTypeViewControler.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/AlarmTypeViewControler.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/CalendarListController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/CalendarListController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/CalendarName.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/CalendarName.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/CustomUISwitch.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/CustomUISwitch.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DateFieldCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/DateFieldCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DateTimeEditorViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/DateTimeEditorViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DefaultDueDateCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/../DefaultDueDateCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DefaultDueDateListController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/DefaultDueDateListController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DefaultDueDateName.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/DefaultDueDateName.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DeleteCompletedCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/DeleteCompletedCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DeleteCompletedTasksCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/DeleteCompletedTasksCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DeleteCompletedTasksListController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/DeleteCompletedTasksListController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/DeleteCompletedTasksName.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/DeleteCompletedTasksName.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/EditingViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/EditingViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/InfoViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/InfoViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/LabelValueCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/LabelValueCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/NSObject+SBItask.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/NSObject+SBItask.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/NSString+SBItask.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/NSString+SBItask.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/Preferences.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Preferences.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/PreferencesViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/PreferencesViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/QuickTaskView.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/QuickTaskView.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/QuickTaskViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/QuickTaskViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/RelativeDateViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/RelativeDateViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SBItask.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/SBItask.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SegmentedControlCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/SegmentedControlCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SortOrderListController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/SortOrderListController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SortOrderName.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/SortOrderName.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/SortOrderTasksCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/SortOrderTasksCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/Task.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/Task.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TaskListCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskListCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TaskListView.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskListView.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TaskListViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskListViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TaskViewController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TaskViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TextViewCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TextViewCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TextViewEditingController.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TextViewEditingController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/TitleCell.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/TitleCell.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/iTaskAppDelegate.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/iTaskAppDelegate.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/iTaskSyncContacts.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Syncing/iTaskSyncContacts.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iTask-iPhone.build/Debug-iphoneos/iTask-iPhone.build/Objects-normal/armv6/main.o "/Users/denis2/Desktop/iTask-iPhone 20090916-1/main.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/AlarmEditingView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/AlarmTypeListView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/CalendarList.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/Classes/QuickTaskView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/DateEditorView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/DeleteCompletedTasksListView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/DueDateListView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/EditingView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/InfoView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/MainWindow.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/PreferencesView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/SortOrderListView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/TaskView.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/TextViewEditingController.xib"
+r0
+
+CCompileXIB "/Users/denis2/Desktop/iTask-iPhone 20090916-1/TimeEditorView.xib"
+r0
+
+CCopyPNGFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/Default.png" Default.png
+r0
+
+CCopyPNGFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/addTask.png" addTask.png
+r0
+
+CCopyPNGFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/checked.png" checked.png
+r0
+
+CCopyPNGFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/deletetask.png" deletetask.png
+r0
+
+CCopyPNGFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/iTask.png" iTask.png
+r0
+
+CCopyPNGFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/info_icon.png" info_icon.png
+r0
+
+CCopyPNGFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/quickadd.png" quickadd.png
+r0
+
+CCopyPNGFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/splash.png" splash.png
+r0
+
+CCopyPNGFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/unchecked.png" unchecked.png
+r0
+
+CCopyStringsFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/Localizable.strings" Resources/Localizable.strings
+r0
+
+CCpResource build/Debug-iphoneos/iTask-iPhone.app/ITaskDB.sql ITaskDB.sql
+r0
+
+CCpResource build/Debug-iphoneos/iTask-iPhone.app/ResourceRules.plist /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.1.2.sdk/ResourceRules.plist
+r0
+
+CCpResource build/Debug-iphoneos/iTask-iPhone.app/Settings.bundle Settings.bundle
+r0
+
+CCpResource build/Debug-iphoneos/iTask-iPhone.app/iTask.db iTask.db
+r0
+
+CGenerateDSYMFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app.dSYM" "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/iTask-iPhone"
+r0
+
+CLd "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/iTask-iPhone" normal armv6
+r0
+
+CProcessInfoPlistFile "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app/Info.plist" Info.plist
+r0
+
+CProcessPCH /var/folders/R7/R7xCbJLxF4WJei8-Ce+ZhU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iTask_iPhone_Prefix-cxwljxzeyqcdsbejhvnkkurebyzd/iTask_iPhone_Prefix.pch.gch iTask_iPhone_Prefix.pch normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CTouch "/Users/denis2/Desktop/iTask-iPhone 20090916-1/build/Debug-iphoneos/iTask-iPhone.app"
+r0
+

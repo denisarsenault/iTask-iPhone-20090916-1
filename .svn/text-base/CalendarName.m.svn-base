@@ -1,0 +1,31 @@
+//
+//  CalendarName.m
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/13/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import "CalendarName.h"
+
+
+@implementation CalendarName
+
+@synthesize UID, name;
+
+- (id) initWithUID:(NSString*)aUID  name:(NSString*)aName
+{
+	self = [super init];
+	if (self != nil) 
+	{
+		if(aUID)
+			self.UID = aUID;
+		
+		if(aName)
+			self.name = aName;
+		
+	}
+	return self;
+}
+
+@end

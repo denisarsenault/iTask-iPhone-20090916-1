@@ -1,0 +1,40 @@
+//
+//  DateTimeEditor.h
+//  iTask-iPhone
+//
+//  Created by Denis Arsenault on 12/10/08.
+//  Copyright 2008 Mybrightzone. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface DateTimeEditorViewController : UIViewController {
+	
+	
+	NSString *textValue;
+
+    IBOutlet UITextField *textField;
+    BOOL dateEditing;
+    NSDate *dateValue;
+   
+	IBOutlet UIDatePicker *datePicker;
+	NSDateFormatter *dateFormatter;
+	
+	IBOutlet UIDatePicker *timePicker;
+	NSDateFormatter *timeFormatter;
+}
+
+
+@property (nonatomic, retain) NSString *textValue;
+@property (nonatomic, retain) NSDate *dateValue;
+@property (nonatomic, assign) BOOL dateEditing;
+@property (nonatomic, readonly) UITextField *textField;
+@property (nonatomic, retain) NSDateFormatter *dateFormatter;
+@property (nonatomic, retain) NSDateFormatter *timeFormatter;
+
+- (IBAction)cancel:(id)sender;
+- (IBAction)save:(id)sender;
+- (IBAction)dateChanged:(id)sender;
+
+@end

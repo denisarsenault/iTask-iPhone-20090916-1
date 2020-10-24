@@ -1,0 +1,53 @@
+8
+
+dir
+92
+http://malringer@bitblasters.svnrepository.com/svn/iTask-iPhone/trunk/iTask-iPhone/Settings.bundle
+http://malringer@bitblasters.svnrepository.com/svn/iTask-iPhone
+
+
+
+2008-12-08T18:57:22.859256Z
+29
+malringer
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+248b74f8-f724-4620-9957-b6c00eca2eef
+
+.DS_Store
+file
+
+
+
+
+2008-12-04T22:15:16.000000Z
+194577a7e20bdcc7afbb718f502c134c
+2008-12-04T22:17:51.611828Z
+6
+malringer
+has-props
+
+Root.plist
+file
+100
+
+
+
+2008-12-17T00:54:14.000000Z
+a124ee278d71990dec7d7ac64c8fc4a9
+2008-12-17T04:05:47.949414Z
+100
+malringer
+

@@ -1,0 +1,16 @@
+//
+//  TaskListView.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/7/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface TaskListView : UIView {
+
+}
+
+@end

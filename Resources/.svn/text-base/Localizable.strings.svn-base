@@ -1,0 +1,62 @@
+/* 
+   Localizable.strings
+   iTask-iPhone
+
+   Created by Scott Mitchell on 12/8/08.
+   Copyright 2008 BitBlasters Software. All rights reserved.
+ */
+
+"ADDRESS_ITEM_NAME" = "iTask";
+"OTHER_EMAIL_NAME" = "other";
+"OTHER_EMAIL_VALUE" = "** DO NOT DELETE - USED FOR SYNCING **";
+
+// JSON element strings
+"TASK_TITLE" = "title";
+"TASK_ICAL_UID" = "iCal-UID";
+"TASK_IPHONE_UID" = "iPhone-UID";
+"TASK_COMPLETED" = "completed";
+"TASK_PRIORITY" = "priority";
+"TASK_DUE_DATE" = "due_date";
+"TASK_CALENDAR" = "calendar-uid";
+"TASK_URL" = "url";
+"TASK_NOTES" = "notes";
+"TASK_ALARMS" = "alarms";
+
+"ALARM_UID" = "alarm-uid";
+"ALARM_TASK_ID" = "alarm-task-id";
+"ALARM_ABSOLUTE_TRIGGER" = "trigger-date";
+"ALARM_ACTION" = "action";
+"ALARM_EMAIL" = "email";
+"ALARM_RELATIVE_TIGGER" = "relative-trigger-date";
+"ALARM_SOUND" = "sound";
+"ALARM_URL" = "alarm-url";
+
+"CALENDAR_UID" = "calendar-uid";
+"CALENDAR_TITLE" = "calendar-title";
+
+"ALARM_TYPE" = "Alarm Type";
+"ALARM_DATE" = "When";
+"ALARM_TIME" = "At";
+
+// These strings are stirngs in the UI
+"Overdue" = "Overdue";
+"Today" = "Today";
+"Tomorrow" = "Tomorrow";
+"Future" = "Future";
+"No Due Date" = "No Due Date";
+"Completed" = "Completed";
+"New iTask" = "New iTask";
+"Title" = "Title";
+"Due Date" = "Due Date";
+"Calendar" = "Calendar";
+"URL" = "URL";
+"Notes" = "Notes";
+"Done" = "Done";
+"None" = "None";
+"Alarm" = "Alarm";
+
+"Low" = "Low";
+"Medium" = "Medium";
+"High" = "High";
+
+"Priority" = "Priority";

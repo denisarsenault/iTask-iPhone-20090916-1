@@ -1,0 +1,551 @@
+//
+//  iTask_iPhoneAppDelegate.m
+//  iTask-iPhone
+//
+//  Created by Scott Mitchell on 12/4/08.
+//  Copyright BitBlasters Software 2008. All rights reserved.	
+//
+
+#import "iTaskAppDelegate.h"
+#import "TaskListViewController.h"
+#import "InfoViewController.h"
+#import "Task.h"
+#import "constants.h"
+
+#import "iTaskSyncContacts.h"
+
+#import <JSON/JSON.h>
+
+
+NSString *kDueDateKey					= @"dueDateKey";
+NSString *kPriorityKey					= @"priorityKey";
+//NSString *kDefaultCalendarKey			= @"defaultCalendarKey"; TBD later
+NSString *kShowOverdueTasksKey			= @"showOverdueTasksKey";
+NSString *kShowTodaysTasksKey			= @"showTodaysTasksKey";
+NSString *kShowTomorrowsTasksKey		= @"showTomorrowsTasksKey";
+NSString *kShowFutureTasksKey			= @"showFutureTasksKey";
+NSString *kShowNoDueDateTasksKey		= @"showNoDueDateTasksKey";
+NSString *kShowCompletedTasksKey		= @"showCompletedTasksKey";
+
+NSString *kDeleteCompletedTasksAfterKey	= @"deleteCompletedTasksAfterKey";
+NSString *kSortOrderKey					= @"sortOrderKey";
+NSString *kShowDateGroupHeadingsKey		= @"showDateGroupHeadingsKey";
+
+// Private interface for AppDelegate - internal only methods.
+@interface iTaskAppDelegate (Private)
+- (void)createEditableCopyOfDatabaseIfNeeded;
+- (void)initializeDatabase;
+@end
+
+
+
+@implementation iTaskAppDelegate
+
+static iTaskAppDelegate* sSharedAppDelegate = nil;
+
+@synthesize window;
+@synthesize navigationController;
+
+@synthesize tasks;
+@synthesize tasksArray;
+
+@synthesize defaultDueDate;
+@synthesize defaultPriority;
+@synthesize showOverdueTasks;
+@synthesize showTodaysTasks;
+@synthesize showTomorrowsTasks;
+@synthesize showFutureTasks;
+@synthesize showNoDueDateTasks;
+@synthesize showCompletedTasks;
+@synthesize showTableHeaders;
+
+
+#pragma mark -
+#pragma mark Singleton Methods
+
++ (id) sharedAppDelegate
+{
+	return sSharedAppDelegate;
+}
+
+#pragma mark -
+#pragma mark Allocation/Deallocation
+
+- (id) init
+{
+	self = [super init];
+	if ( self != nil )
+	{
+		sSharedAppDelegate = self;
+	}
+	return self;
+}
+
+#pragma mark -
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+	
+		
+	NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kDueDateKey];
+	if (testValue == nil)
+	{
+		// no default values have been set, create them here based on what's in our Settings bundle info
+		//
+		NSString *pathStr = [[NSBundle mainBundle] bundlePath];
+		NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
+		NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
+		
+		NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
+		NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
+		
+		NSNumber *dueDateDefault;
+		NSNumber *priorityDefault;
+		
+		Boolean	 showOverdueTasksDefault;
+		Boolean	 showTodaysTasksDefault;
+		Boolean	 showTomorrowsTasksDefault;
+		Boolean	 showFutureTaskseDefault;
+		Boolean	 showNoDueDateDefault;
+		Boolean	 showCompletedTasksDefault;
+
+		Boolean	 showDateGroupHeadersDefault;
+		
+		NSDictionary *prefItem;
+		for (prefItem in prefSpecifierArray)
+		{
+			NSString *keyValueStr = [prefItem objectForKey:@"Key"];
+			
+			if ([keyValueStr isEqualToString:kDueDateKey])
+			{
+				dueDateDefault =[prefItem objectForKey:@"DefaultValue"];
+			}
+			else if ([keyValueStr isEqualToString:kPriorityKey])
+			{
+				priorityDefault = [prefItem objectForKey:@"DefaultValue"];
+			}
+			else if ([keyValueStr isEqualToString:kShowOverdueTasksKey])
+			{
+				showOverdueTasksDefault = [[prefItem valueForKey:@"DefaultValue"] boolValue];
+			}
+			else if ([keyValueStr isEqualToString:kShowTodaysTasksKey])
+			{
+				showTodaysTasksDefault = [[prefItem valueForKey:@"DefaultValue"] boolValue];
+			}
+			else if ([keyValueStr isEqualToString:kShowTomorrowsTasksKey])
+			{
+				showTomorrowsTasksDefault = [[prefItem valueForKey:@"DefaultValue"] boolValue];
+			}
+			else if ([keyValueStr isEqualToString:kShowFutureTasksKey])
+			{
+				showFutureTaskseDefault = [[prefItem valueForKey:@"DefaultValue"] boolValue];
+			}
+			else if ([keyValueStr isEqualToString:kShowNoDueDateTasksKey])
+			{
+				showNoDueDateDefault = [[prefItem valueForKey:@"DefaultValue"] boolValue];
+			}
+			else if ([keyValueStr isEqualToString:kShowCompletedTasksKey])
+			{
+				showCompletedTasksDefault = [[prefItem valueForKey:@"DefaultValue"] boolValue];
+			}
+			
+			else if ([keyValueStr isEqualToString:kShowDateGroupHeadingsKey])
+			{
+				showDateGroupHeadersDefault = [[prefItem valueForKey:@"DefaultValue"] boolValue];
+			}
+			
+
+		}
+		
+		// since no default values have been set (i.e. no preferences file created), create it here
+		NSDictionary *appDefaults =  [NSDictionary dictionaryWithObjectsAndKeys:
+									  [NSNumber numberWithInt:1], kDueDateKey,
+									  [NSNumber numberWithInt:1], kPriorityKey,
+									  [NSNumber numberWithBool:YES], kShowOverdueTasksKey,
+									  [NSNumber numberWithBool:YES], kShowTodaysTasksKey,
+									  [NSNumber numberWithBool:YES], kShowTomorrowsTasksKey,
+									  [NSNumber numberWithBool:YES], kShowFutureTasksKey,
+									  [NSNumber numberWithBool:YES], kShowNoDueDateTasksKey,
+									  [NSNumber numberWithBool:YES], kShowCompletedTasksKey,
+									  [NSNumber numberWithBool:YES], kShowDateGroupHeadingsKey,
+									  nil];
+		
+		[[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+	}
+	
+	// we're ready to do, so lastly set the key preference values
+	defaultDueDate = [[NSUserDefaults standardUserDefaults] integerForKey:kDueDateKey];
+	defaultPriority = [[NSUserDefaults standardUserDefaults] integerForKey:kPriorityKey];
+
+	showOverdueTasks= [[NSUserDefaults standardUserDefaults] boolForKey:kShowOverdueTasksKey];
+	showTodaysTasks= [[NSUserDefaults standardUserDefaults] boolForKey:kShowTodaysTasksKey];
+	showTomorrowsTasks= [[NSUserDefaults standardUserDefaults] boolForKey:kShowTomorrowsTasksKey];
+	showFutureTasks= [[NSUserDefaults standardUserDefaults] boolForKey:kShowFutureTasksKey];
+	showNoDueDateTasks= [[NSUserDefaults standardUserDefaults] boolForKey:kShowNoDueDateTasksKey];
+	showCompletedTasks= [[NSUserDefaults standardUserDefaults] boolForKey:kShowCompletedTasksKey];
+
+
+	showTableHeaders = [[NSUserDefaults standardUserDefaults] boolForKey:kShowDateGroupHeadingsKey ];
+	
+		// so we need to create a copy of it in the application's Documents directory.     
+    [self createEditableCopyOfDatabaseIfNeeded];
+    // Call internal method to initialize database connection
+    [self initializeDatabase];
+	
+	iTaskSyncContacts* addressSyncContacts = [[iTaskSyncContacts alloc] init];
+	[addressSyncContacts readAddressBookTaskData];
+
+	
+	// Configure and show the window
+	[window addSubview:[navigationController view]];
+	[window makeKeyAndVisible];
+	
+	
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    // "dehydrate" all data objects - flushes changes back to the database, removes objects from memory
+    [tasks makeObjectsPerformSelector:@selector(dehydrate)];
+}
+
+
+
+- (void)dealloc {
+	[navigationController release];
+	[InfoViewController release];
+	[window release];
+	[tasks release];
+	[super dealloc];
+}
+
+
+// Creates a writable copy of the bundled default database in the application Documents directory.
+- (void)createEditableCopyOfDatabaseIfNeeded {
+    // First, test for existence.
+    BOOL success;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"iTask.db"];
+    success = [fileManager fileExistsAtPath:writableDBPath];
+    if (success) return;
+    // The writable database does not exist, so copy the default to the appropriate location.
+    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"iTask.db"];
+    success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
+    if (!success) {
+        NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
+    }
+}
+
+// Open the database connection and retrieve minimal information for all objects.
+- (void)initializeDatabase {
+    NSMutableArray *taskArray = [[NSMutableArray alloc] init];
+    self.tasks = taskArray;
+    [taskArray release];
+    // The database is stored in the application bundle. 
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"iTask.db"];
+    // Open the database. The database was prepared outside the application.
+    if (sqlite3_open([path UTF8String], &database) == SQLITE_OK) {
+        // Get the primary key for all books.
+        const char *sql = "SELECT taskID FROM tasks";
+        sqlite3_stmt *statement;
+        // Preparing a statement compiles the SQL query into a byte-code program in the SQLite library.
+        // The third parameter is either the length of the SQL string or -1 to read up to the first null terminator.        
+        if (sqlite3_prepare_v2(database, sql, -1, &statement, NULL) == SQLITE_OK) {
+            // We "step" through the results - once for each row.
+            while (sqlite3_step(statement) == SQLITE_ROW) {
+                // The second parameter indicates the column index into the result set.
+                int taskID = sqlite3_column_int(statement, 0);
+                // We avoid the alloc-init-autorelease pattern here because we are in a tight loop and
+                // autorelease is slightly more expensive than release. This design choice has nothing to do with
+                // actual memory management - at the end of this block of code, all the task objects allocated
+                // here will be in memory regardless of whether we use autorelease or release, because they are
+                // retained by the tasks array.
+                Task *task = [[Task alloc] initWithPrimaryKey:taskID database:database];
+                [tasks addObject:task];
+                [task release];
+            }
+        }
+        // "Finalize" the statement - releases the resources associated with the statement.
+        sqlite3_finalize(statement);
+    } else {
+        // Even though the open failed, call close to properly clean up resources.
+        sqlite3_close(database);
+        NSAssert1(0, @"Failed to open database with message '%s'.", sqlite3_errmsg(database));
+        // Additional error handling, as appropriate...
+    }
+	
+	[self updateTaskList];
+		
+}
+
+
+- (void) updateTaskList{
+	
+	tasksArray = [[NSMutableArray alloc] initWithCapacity:5];
+	
+	
+	if(showOverdueTasks){
+		[tasksArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+							  @"Overdue", @"Heading",
+							  [self overdueTasks], @"Data",
+							  nil]];
+	}
+	
+	if(showTodaysTasks){
+		[tasksArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+							   @"Today", @"Heading",
+							   [self todaysTasks], @"Data",
+							   nil]];
+	}
+	
+	if(showTomorrowsTasks){
+		[tasksArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+							   @"Tomorrow", @"Heading",
+							   [self tomorrowsTasks], @"Data",
+							   nil]];
+	}
+	
+	if(showFutureTasks){
+		[tasksArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+							   @"Future", @"Heading",
+							   [self futureTasks], @"Data",
+							   nil]];
+	}
+	
+	if(showNoDueDateTasks){
+		[tasksArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+							   @"Future", @"Heading",
+							   [self noDueDateTasks], @"Data",
+							   nil]];
+	}
+	
+	
+	if(showCompletedTasks){
+		[tasksArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+							   @"Future", @"Heading",
+							   [self completedTasks], @"Data",
+							   nil]];
+	}
+	
+	
+	
+	
+}
+
+- (NSArray *)overdueTasks{
+	NSDate *today = [NSDate date];
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+	NSDateComponents *todayComponents =[gregorian components:unitFlags fromDate:today];
+	[todayComponents setHour:0];
+	[todayComponents setMinute:0];
+	[todayComponents setSecond:0];
+	
+	NSDate *referenceDate = [gregorian dateFromComponents:todayComponents];
+	[gregorian release];
+	
+
+	NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
+	unsigned int i;
+	for (i = 0; i < [tasks count]; i++) {
+		Task *task = [tasks objectAtIndex: i];
+		NSDate *dueDate  = task.dueDate;
+		
+		if ([dueDate compare:referenceDate] == NSOrderedAscending) {
+			[filteredArray addObject:task];
+		}
+	}
+	
+	NSLog(@"Overdue Tasks Array = %@", filteredArray);
+	
+	return filteredArray;
+	
+}
+
+- (NSArray *)todaysTasks{	
+	NSDate *today = [NSDate date];
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+	NSDateComponents *todayComponents =[gregorian components:unitFlags fromDate:today];
+	int todayMonth = [todayComponents month];
+	int todayDay = [todayComponents day];
+	int todayYear = [todayComponents year];
+	[gregorian release];
+	
+	
+	NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
+	unsigned int i;
+	for (i = 0; i < [tasks count]; i++) {
+		Task *task = [tasks objectAtIndex: i];
+		NSDate *dueDate  = task.dueDate;
+		
+		NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		NSDateComponents *dueDateComponents =[gregorian components:unitFlags fromDate:dueDate];
+		int dueDateMonth = [dueDateComponents month];
+		int dueDateDay = [dueDateComponents day];
+		int dueDateYear = [dueDateComponents year];
+		
+		if (dueDateMonth == todayMonth && dueDateDay == todayDay &&  dueDateYear == todayYear) {
+			[filteredArray addObject:task];
+		}
+	}
+	NSLog(@"Tomorrows Tasks Array = %@", filteredArray);
+	
+	return filteredArray;
+	
+	
+}
+
+- (NSArray *)tomorrowsTasks{
+	
+	NSTimeInterval secondsPerDay = 24 * 60 * 60;
+	NSDate *tomorrow = [NSDate dateWithTimeIntervalSinceNow:secondsPerDay];
+	
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+	NSDateComponents *tomorrowComponents =[gregorian components:unitFlags fromDate:tomorrow];
+	int tomorrowMonth = [tomorrowComponents month];
+	int tomorrowDay = [tomorrowComponents day];
+	int tomorrowYear = [tomorrowComponents year];
+	[gregorian release];
+	
+	
+	NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
+	unsigned int i;
+	for (i = 0; i < [tasks count]; i++) {
+		Task *task = [tasks objectAtIndex: i];
+		NSDate *dueDate  = task.dueDate;
+		
+		NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		NSDateComponents *dueDateComponents =[gregorian components:unitFlags fromDate:dueDate];
+		int dueDateMonth = [dueDateComponents month];
+		int dueDateDay = [dueDateComponents day];
+		int dueDateYear = [dueDateComponents year];
+		
+		if (dueDateMonth == tomorrowMonth && dueDateDay == tomorrowDay &&  dueDateYear == tomorrowYear) {
+			[filteredArray addObject:task];
+		}
+	}
+	NSLog(@"Todays Tasks Array = %@", filteredArray);
+	
+	return filteredArray;
+}
+
+- (NSArray *)futureTasks{
+	NSTimeInterval secondsPerDay = 24 * 60 * 60;
+	NSDate *tomorrow = [NSDate dateWithTimeIntervalSinceNow:secondsPerDay];
+	
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+	NSDateComponents *tomorrowComponents =[gregorian components:unitFlags fromDate:tomorrow];
+	[tomorrowComponents setHour:23];
+	[tomorrowComponents setMinute:59];
+	[tomorrowComponents setSecond:59];
+	
+	NSDate *referenceDate = [gregorian dateFromComponents:tomorrowComponents];
+	[gregorian release];
+	
+	
+	NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
+	unsigned int i;
+	for (i = 0; i < [tasks count]; i++) {
+		Task *task = [tasks objectAtIndex: i];
+		NSDate *dueDate  = task.dueDate;
+		
+		if ([dueDate compare:referenceDate] == NSOrderedDescending) {
+			[filteredArray addObject:task];
+		}
+	}
+	
+	NSLog(@"Future Tasks Array = %@", filteredArray);
+	
+	return filteredArray;
+	
+	
+}
+
+- (NSArray *)noDueDateTasks{
+	NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
+	return filteredArray;
+}
+
+- (NSArray *)completedTasks{
+	NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
+	return filteredArray;
+}
+
+// Save all changes to the database, then close it.
+- (void)applicationWillTerminate:(UIApplication *)application {
+    // Save changes.
+    [tasks makeObjectsPerformSelector:@selector(dehydrate)];
+    [Task finalizeStatements];
+    // Close the database.
+    if (sqlite3_close(database) != SQLITE_OK) {
+        NSAssert1(0, @"Error: failed to close database with message '%s'.", sqlite3_errmsg(database));
+    }
+}
+
+// Remove a specific task from the array of tasks and also from the database.
+- (void)removeTask:(Task *)task {
+    // Delete from the database first. The task knows how to do this (see Task.m)
+    [task deleteFromDatabase];
+    [tasks removeObject:task];
+	[self updateTaskList];
+}
+
+// Insert a new task into the database and add it to the array of tasks.
+- (void)addTask:(Task *)task {
+    // Create a new record in the database and get its automatically generated primary key.
+    [task insertIntoDatabase:database];
+    [tasks addObject:task];
+	[self updateTaskList];
+}
+
+// Display the help screen.
+- (IBAction)info:(id)sender {
+	[UIView beginAnimations:nil	context:NULL];
+	[UIView setAnimationDuration:1.0];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
+						   forView:window 
+							 cache:YES];
+	
+	
+	// Instantiate the task view controller if necessary.
+    if (infoViewController == nil) {
+        infoViewController = [[InfoViewController alloc] initWithNibName:@"InfoView" bundle:nil];
+    }
+	
+	[navigationController.view removeFromSuperview];
+	
+	
+	[window addSubview:[infoViewController view]];
+	
+	[UIView commitAnimations];
+}
+
+	
+	
+
+- (void) unloadInfo
+{		
+	if(infoViewController != nil) {
+		
+		[UIView beginAnimations:nil	context:NULL];
+		[UIView setAnimationDuration:1.0];
+		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+							   forView:window 
+								 cache:YES];
+		
+		[[infoViewController view] removeFromSuperview];
+		[window addSubview:navigationController.view];
+		
+		[UIView commitAnimations];
+	}
+
+}
+
+@end

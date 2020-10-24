@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Title</key>
+			<string>New Task Defaults</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<integer>2</integer>
+			<key>Key</key>
+			<string>dueDateKey</string>
+			<key>Title</key>
+			<string>Due Date</string>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>Today</string>
+				<string>Tomorrow</string>
+				<string>+3 Days</string>
+				<string>+7 Days</string>
+				<string>+30 Days</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<integer>5</integer>
+			<key>Key</key>
+			<string>priorityKey</string>
+			<key>Title</key>
+			<string>Priority</string>
+			<key>Titles</key>
+			<array>
+				<string>Low</string>
+				<string>Medium</string>
+				<string>High</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>9</integer>
+				<integer>5</integer>
+				<integer>1</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Show Tasks</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>showOverdueTasksKey</string>
+			<key>Title</key>
+			<string>Overdue</string>
+			<key>Titles</key>
+			<array>
+				<string>Yes</string>
+				<string>No</string>
+			</array>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>showTodaysTasksKey</string>
+			<key>Title</key>
+			<string>Today</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>showTomorrowsTasksKey</string>
+			<key>Title</key>
+			<string>Tomorrow</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>showFutureTasksKey</string>
+			<key>Title</key>
+			<string>Future</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>showNoDueDateTasksKey</string>
+			<key>Title</key>
+			<string>No Due Date</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>showCompletedTasksKey</string>
+			<key>Title</key>
+			<string>Completed</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Key</key>
+			<string>deleteCompletedTasksAfterKey</string>
+			<key>Title</key>
+			<string>Delete Completed Tasks</string>
+			<key>Titles</key>
+			<array>
+				<string>Immediately</string>
+				<string>1 Week</string>
+				<string>1 Month</string>
+				<string>3 Months</string>
+				<string>12 Months</string>
+				<string>Never</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>6</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Key</key>
+			<string>sortOrderKey</string>
+			<key>Title</key>
+			<string>Sort Order</string>
+			<key>Titles</key>
+			<array>
+				<string>Date then Priority</string>
+				<string>Priority then Date</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>showDateGroupHeadingsKey</string>
+			<key>Title</key>
+			<string>Show Date Group Headings</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+	</array>
+	<key>Title</key>
+	<string>iTaskSync</string>
+</dict>
+</plist>

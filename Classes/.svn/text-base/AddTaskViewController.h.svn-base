@@ -1,0 +1,19 @@
+//
+//  AddTaskViewController.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/5/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "TaskViewController.h"
+
+
+@interface AddTaskViewController : TaskViewController {
+}
+- (IBAction)cancel:(id)sender;
+- (IBAction)save:(id)sender;
+
+
+@end

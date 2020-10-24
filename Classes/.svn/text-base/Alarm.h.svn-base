@@ -1,0 +1,103 @@
+//
+//  Alarm.h
+//  iTask-iPhone
+//
+//  Created by Scott Mitchell on 12/10/08.
+//  Copyright 2008 BitBlasters Software. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <sqlite3.h>
+
+enum alarmActionType
+{
+	alarmActionNone = 1,
+	alarmActionMessage,
+	alarmActionMessageWithSound,
+	alarmActionEmail,
+	alarmActionOpenFile,
+	alarmActionRunScript
+};
+
+
+@interface Alarm : NSObject 
+{
+	// Opaque reference to the underlying database.
+    sqlite3 *database;
+	
+	// Primary key in the database.
+	NSInteger	alarmID;
+	
+	// Dehydrated Attributes.
+	NSInteger	taskID;
+	NSDate*		triggerDate;
+	NSString*	action;
+	NSString*	email;
+	NSString*	sound;
+	NSNumber*	relativeDate;
+	NSString*	url;
+	
+    // Dirty tracks whether there are in-memory changes to data which have no been written to the database.
+    BOOL dirty;
+	
+	BOOL modified;	// We need something else to tell us that this task was modified and needs to be written out to the AddressBook, because the
+					// dirty flag gets cleared when the task gets saved to the SQL DB
+	
+	//converted action  type to enum
+	NSInteger	alarmActionType;
+
+}
+
+@property (assign, nonatomic, readonly) NSInteger alarmID;
+
+// The remaining attributes are copied rather than retained because they are value objects.
+@property (nonatomic) NSInteger taskID;
+@property (nonatomic, retain) NSDate *triggerDate;
+@property (nonatomic, retain) NSString *action;
+@property (nonatomic, retain) NSString *email;
+@property (nonatomic, retain) NSString *sound;
+@property (nonatomic, retain) NSNumber *relativeDate;
+@property (nonatomic, retain) NSString *url;
+@property (nonatomic) NSInteger	alarmActionType;
+
+
+// Creates new alarm object with default settings
+- (id) initWithTaskID:(NSInteger)aTaskID;
+
+
+// Creates the object with primary key and title is brought into memory.
+- (id)initWithPrimaryKey:(NSInteger)pk database:(sqlite3 *)db;
+
+- (id) initWithDictionary:(NSDictionary*) dictionary andTaskID:(NSInteger) inTaskID;
+- (void) updateAlarmWithDictionary:(NSDictionary*) dictionary;
+
+// Inserts the task into the database and stores its primary key.
+- (void)insertIntoDatabase:(sqlite3 *)database;
+
+// Update the record
+- (void)updateInDatabase;
+
+// Remove the task complete from the database. In memory deletion to follow...
+- (void)deleteFromDatabase;
+
+- (void) setModified:(BOOL) isModified;
+- (BOOL) modified;
+- (void) clearModified;
+
+- (void) setDirty:(BOOL) isDirty;
+- (BOOL) dirty;
+
+#pragma mark -
+#pragma mark Class Methods
+
+- (void) addToTaskInTaskArray:(NSMutableArray*) taskArray;
+- (NSMutableDictionary*) createAlarmDictionary;
+
+
+-(void) setActionType;
+-(NSString*) getActionString;
+
+- (NSDate*) getAlarmDateWithDueDate:(NSDate*)dueDate;
+- (NSString*) getAlarmDateStringWithDueDate:(NSDate*)dueDate;
+- (NSString*) getAlarmTimeStringWithDueDate:(NSDate*)dueDate;
+@end

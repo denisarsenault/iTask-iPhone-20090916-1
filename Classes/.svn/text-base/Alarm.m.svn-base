@@ -1,0 +1,635 @@
+//
+//  Alarm.m
+//  iTask-iPhone
+//
+//  Created by Scott Mitchell on 12/10/08.
+//  Copyright 2008 BitBlasters Software. All rights reserved.
+//
+
+#import "Alarm.h"
+#import "Task.h"
+#import "iTaskAppDelegate.h"
+
+@implementation Alarm
+
+@synthesize  alarmActionType;
+
+- (void) dealloc 
+{
+	
+	[triggerDate release];
+	[action release];
+	[email release];
+	[sound release];
+	[relativeDate release];
+	[url release];
+	[super dealloc];
+}
+
+- (id) initWithTaskID:(NSInteger)aTaskID
+{
+	self = [super init];
+	if (self != nil) 
+	{
+		self.taskID = aTaskID;
+		self.relativeDate = [NSNumber numberWithInt:-900];
+		self.action = @"DISPLAY";
+		[self setActionType];
+	}
+	return self;
+}
+
+
+
+
+- (id) initWithDictionary:(NSDictionary*) dictionary andTaskID:(NSInteger) inTaskID
+{
+	self = [super init];
+	if (self != nil) 
+	{
+		
+		NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]  autorelease];
+		[dateFormatter setDateFormat:@"MM/dd/yyyy"];
+		
+		self.taskID = inTaskID;
+		
+		if ( ![[dictionary objectForKey:NSLocalizedString(@"ALARM_ABSOLUTE_TRIGGER", @"")] isEqualToString:@""] )
+			self.triggerDate = [dateFormatter dateFromString:[dictionary objectForKey:NSLocalizedString(@"ALARM_ABSOLUTE_TRIGGER", @"")]];
+		
+		self.action = [dictionary objectForKey:NSLocalizedString(@"ALARM_ACTION", @"")];
+		self.email = [dictionary objectForKey:NSLocalizedString(@"ALARM_EMAIL", @"")];
+		self.sound = [dictionary objectForKey:NSLocalizedString(@"ALARM_SOUND", @"")];
+		self.url = [dictionary objectForKey:NSLocalizedString(@"ALARM_URL", @"")];
+		self.relativeDate = [NSNumber numberWithDouble:[[dictionary objectForKey:NSLocalizedString(@"ALARM_RELATIVE_TIGGER", @"")] doubleValue]];
+		[self setActionType];
+	}
+	return self;
+}
+
+- (void) updateAlarmWithDictionary:(NSDictionary*) dictionary
+{
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]  autorelease];
+	[dateFormatter setDateFormat:@"MM/dd/yyyy"];
+	
+	if ( ![[dictionary objectForKey:NSLocalizedString(@"ALARM_ABSOLUTE_TRIGGER", @"")] isEqualToString:@""] )
+		self.triggerDate = [dateFormatter dateFromString:[dictionary objectForKey:NSLocalizedString(@"ALARM_ABSOLUTE_TRIGGER", @"")]];
+	
+	self.action = [dictionary objectForKey:NSLocalizedString(@"ALARM_ACTION", @"")];
+	self.email = [dictionary objectForKey:NSLocalizedString(@"ALARM_EMAIL", @"")];
+	self.sound = [dictionary objectForKey:NSLocalizedString(@"ALARM_SOUND", @"")];
+	self.url = [dictionary objectForKey:NSLocalizedString(@"ALARM_URL", @"")];
+	self.relativeDate = [NSNumber numberWithDouble:[[dictionary objectForKey:NSLocalizedString(@"ALARM_RELATIVE_TIGGER", @"")] doubleValue]];
+	[self setActionType];
+}
+
+#pragma mark -
+#pragma mark Database access
+
+// Creates the object with primary key bring the tasks lsit information into memory.
+- (id)initWithPrimaryKey:(NSInteger)pk database:(sqlite3 *)db 
+{
+    if (self = [super init]) 
+	{
+		alarmID = pk;
+        database = db;
+		
+        sqlite3_stmt *init_statement = nil;
+		const char *sql = "SELECT taskID, action, triggerDate, email, sound, relativeDate, url FROM alarms WHERE alarmID=?";
+		if (sqlite3_prepare_v2(database, sql, -1, &init_statement, NULL) != SQLITE_OK) 
+		{
+			NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+		}
+        
+        
+		// Bind the primary key variable.
+        sqlite3_bind_int(init_statement, 1, alarmID);
+		
+		// Execute the query.
+		int success = sqlite3_step(init_statement);
+		
+        if (success == SQLITE_ROW) 
+		{
+			self.taskID = [[NSNumber numberWithInt:sqlite3_column_double(init_statement, 0)] integerValue];
+			
+            self.action = [NSString stringWithUTF8String:(char *)sqlite3_column_text(init_statement, 1)];
+			
+			NSNumber *dateNum = [NSNumber numberWithDouble:sqlite3_column_double(init_statement, 2)];
+			if([dateNum intValue] != 0)
+				self.triggerDate = [NSDate dateWithTimeIntervalSince1970:[dateNum doubleValue]];
+			
+			self.email = [NSString stringWithUTF8String:(char *)sqlite3_column_text(init_statement, 3)];
+			self.sound = [NSString stringWithUTF8String:(char *)sqlite3_column_text(init_statement, 4)];
+			self.relativeDate = [NSNumber numberWithInt:sqlite3_column_double(init_statement, 5)];
+			self.url = [NSString stringWithUTF8String:(char *)sqlite3_column_text(init_statement, 6)];			
+		} 
+		
+        sqlite3_finalize(init_statement);
+		
+        [self setActionType];
+		dirty = NO;
+    }
+    return self;
+}
+
+
+
+// Update the alarm in the database.
+- (void)updateInDatabase 
+{
+    if (dirty) 
+	{
+        // Write any changes to the database.
+        sqlite3_stmt *dehydrate_statement = nil;
+		const char *sql = "UPDATE alarms SET taskID=?, triggerDate=?, action=?, email=?, sound=?, relativeDate=?, url=?, WHERE alarmID=?";
+		if (sqlite3_prepare_v2(database, sql, -1, &dehydrate_statement, NULL) != SQLITE_OK) 
+		{
+			NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+		}
+        
+		
+		// Bind the query variables.
+		int var = 1;
+		if (taskID)
+			sqlite3_bind_int(dehydrate_statement, var++, taskID);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (triggerDate)
+			sqlite3_bind_double(dehydrate_statement, var++, [triggerDate timeIntervalSince1970]);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (action)
+			sqlite3_bind_text(dehydrate_statement, var++, [action UTF8String], -1, SQLITE_TRANSIENT);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (email)
+			sqlite3_bind_text(dehydrate_statement, var++, [email UTF8String], -1, SQLITE_TRANSIENT);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (sound)
+			sqlite3_bind_text(dehydrate_statement, var++, [sound UTF8String], -1, SQLITE_TRANSIENT);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (relativeDate)
+			sqlite3_bind_int(dehydrate_statement, var++, (int) relativeDate);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (url)
+			sqlite3_bind_text(dehydrate_statement, var++, [url UTF8String], -1, SQLITE_TRANSIENT);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+        sqlite3_bind_int(dehydrate_statement, var++, alarmID);
+		
+        // Execute the query.
+        int success = sqlite3_step(dehydrate_statement);
+        
+        sqlite3_finalize(dehydrate_statement);
+		
+        // Handle errors.
+        if (success != SQLITE_DONE) 
+		{
+            NSAssert1(0, @"Error: failed to dehydrate with message '%s'.", sqlite3_errmsg(database));
+        }
+        // Update the object state with respect to unwritten changes.
+        dirty = NO;
+    }
+
+}
+
+- (void)insertIntoDatabase:(sqlite3 *)db 
+{
+    database = db;
+    
+	sqlite3_stmt *insert_statement = nil;
+	static char *sql = "INSERT INTO alarms (taskID, triggerDate, action, email, sound, relativeDate, url) VALUES(?, ?, ?, ?, ?, ?, ?)";
+	if (sqlite3_prepare_v2(database, sql, -1, &insert_statement, NULL) != SQLITE_OK) 
+	{
+		NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+	}
+    
+	
+	// Bind the query variables.
+	// Bind the query variables.
+	int var = 1;
+	if (taskID)
+		sqlite3_bind_int(insert_statement, var++, taskID);
+	else
+		sqlite3_bind_null(insert_statement, var++);
+	
+	if (triggerDate)
+		sqlite3_bind_double(insert_statement, var++, [triggerDate timeIntervalSince1970]);
+	else
+		sqlite3_bind_null(insert_statement, var++);
+	
+	if (action)
+		sqlite3_bind_text(insert_statement, var++, [action UTF8String], -1, SQLITE_TRANSIENT);
+	else
+		sqlite3_bind_null(insert_statement, var++);
+	
+	if (email)
+		sqlite3_bind_text(insert_statement, var++, [email UTF8String], -1, SQLITE_TRANSIENT);
+	else
+		sqlite3_bind_null(insert_statement, var++);
+	
+	if (sound)
+		sqlite3_bind_text(insert_statement, var++, [sound UTF8String], -1, SQLITE_TRANSIENT);
+	else
+		sqlite3_bind_null(insert_statement, var++);
+	
+	if (relativeDate)
+		sqlite3_bind_int(insert_statement, var++, (int) relativeDate);
+	else
+		sqlite3_bind_null(insert_statement, var++);
+	
+	if (url)
+		sqlite3_bind_text(insert_statement, var++, [url UTF8String], -1, SQLITE_TRANSIENT);
+	else
+		sqlite3_bind_null(insert_statement, var++);
+	
+	
+	int success = sqlite3_step(insert_statement);
+    
+	sqlite3_finalize(insert_statement);
+    
+	if (success == SQLITE_ERROR) 
+	{
+        NSAssert1(0, @"Error: failed to insert into the database with message '%s'.", sqlite3_errmsg(database));
+    } 
+	else 
+	{
+        // SQLite provides a method which retrieves the value of the most recently auto-generated primary key sequence
+        // in the database. To access this functionality, the table should have a column declared of type 
+        // "INTEGER PRIMARY KEY"
+        alarmID = sqlite3_last_insert_rowid(database);
+    }
+    
+}
+
+
+- (void)deleteFromDatabase 
+{
+    sqlite3_stmt *delete_statement = nil;const char *sql = "DELETE FROM alarms WHERE alarmID=?";
+	if (sqlite3_prepare_v2(database, sql, -1, &delete_statement, NULL) != SQLITE_OK) 
+	{
+		NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+	}
+    
+	
+    // Bind the primary key variable.
+    sqlite3_bind_int(delete_statement, 1, alarmID);
+    // Execute the query.
+    int success = sqlite3_step(delete_statement);
+    
+    sqlite3_finalize(delete_statement);
+    // Handle errors.
+    if (success != SQLITE_DONE) 
+	{
+        NSAssert1(0, @"Error: failed to delete from database with message '%s'.", sqlite3_errmsg(database));
+    }
+}
+
+#pragma mark -
+#pragma mark Dehydrated Properties
+// Accessors implemented below. All the "get" accessors simply return the value directly, with no additional
+// logic or steps for synchronization. The "set" accessors attempt to verify that the new value is definitely
+// different from the old value, to minimize the amount of work done. Any "set" which actually results in changing
+// data will mark the object as "dirty" - i.e., possessing data that has not been written to the database.
+// All the "set" accessors copy data, rather than retain it. This is common for value objects - strings, numbers, 
+// dates, data buffers, etc. This ensures that subsequent changes to either the original or the copy don't violate 
+// the encapsulation of the owning object.
+
+- (NSInteger)alarmID 
+{
+    return alarmID;
+}
+
+- (NSInteger)taskID 
+{
+    return taskID;
+}
+
+- (void) setTaskID:(NSInteger)aID
+{
+	if ( aID == taskID )
+		return;
+	[self setDirty:YES];
+	taskID = aID;
+}
+
+- (NSDate *)triggerDate 
+{
+    return triggerDate;
+}
+
+- (void)setTriggerDate:(NSDate *)aDate 
+{
+    if ((!triggerDate && !aDate) || (triggerDate && aDate && [triggerDate isEqualToDate:aDate])) 
+		return;
+    [self setDirty:YES];
+    [triggerDate release];
+    triggerDate = [aDate copy];
+}
+
+- (NSString *)action 
+{
+    return action;
+}
+
+- (void)setAction:(NSString *)aString 
+{
+    if ((!action && !aString) || (action && aString && [action isEqualToString:aString])) 
+		return;
+    [self setDirty:YES];
+    [action release];
+    action = [aString copy];
+}
+
+- (NSString *)email 
+{
+    return email;
+}
+
+- (void)setEmail:(NSString *)aString 
+{
+    if ((!email && !aString) || (email && aString && [email isEqualToString:aString])) 
+		return;
+    [self setDirty:YES];
+    [email release];
+    email = [aString copy];
+}
+
+- (NSString *)sound 
+{
+    return sound;
+}
+
+- (void)setSound:(NSString *)aString 
+{
+    if ((!sound && !aString) || (sound && aString && [sound isEqualToString:aString])) 
+		return;
+    [self setDirty:YES];
+    [sound release];
+    sound = [aString copy];
+}
+
+- (NSNumber*)relativeDate 
+{
+    return relativeDate;
+}
+
+- (void)setRelativeDate:(NSNumber*)anInteger 
+{
+    if ((!relativeDate && !anInteger) || (relativeDate && anInteger && [relativeDate isEqualToNumber:anInteger])) 
+		return;
+    [self setDirty:YES];
+    [relativeDate release];
+    relativeDate = [anInteger copy];
+}
+
+- (NSString *)url 
+{
+    return url;
+}
+
+- (void)setUrl:(NSString *)aString 
+{
+    if ((!url && !aString) || (url && aString && [url isEqualToString:aString])) 
+		return;
+    [self setDirty:YES];
+    [url release];
+    url = [aString copy];
+}
+
+- (void) setModified:(BOOL) isModified
+{	
+	if ( isModified )
+	{
+			// then we need to mark the Task that this alaram is attached to as modified also
+		NSMutableArray* tasks = [[iTaskAppDelegate sharedAppDelegate] tasks];
+		
+		for(Task* task in tasks)
+		{
+			if ( [task taskID] == taskID )
+			{
+				[task setModified:YES];
+				break;
+			}
+		}
+	}
+	modified = isModified;
+}
+
+- (BOOL) modified
+{
+	return modified;
+}
+
+- (void) clearModified
+{
+	modified = NO;
+}
+
+- (void) setDirty:(BOOL) isDirty
+{
+	if ( isDirty)
+		[self setModified:YES];
+	else if (dirty)
+		[self setModified:YES];
+	
+	dirty = isDirty;
+}
+
+- (BOOL) dirty
+{
+	return dirty;
+}
+
+
+#pragma mark -
+#pragma mark Class Methods
+
+- (void) addToTaskInTaskArray:(NSMutableArray*) taskArray
+{
+		// ok we need to find the task from the task array and put this
+		// alarm in the tasks alarm array
+	for(Task* task in taskArray)
+	{
+		if( [task taskID] == [self taskID] )
+		{
+			NSMutableArray* alarmsArray = [task alarms];
+			[alarmsArray addObject:self];
+			break;
+		}
+	}
+}
+
+- (NSMutableDictionary*) createAlarmDictionary
+{
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]  autorelease];
+	[dateFormatter setDateFormat:@"MM/dd/yyyy"];
+	
+	NSMutableDictionary* alarmDict = [[NSMutableDictionary alloc] init];
+	
+	[alarmDict setObject:[[NSNumber numberWithInteger:alarmID] stringValue] forKey:NSLocalizedString(@"ALARM_UID", @"")];
+	[alarmDict setObject:[NSNumber numberWithInteger:taskID] forKey:NSLocalizedString(@"ALARM_TASK_ID", @"")];
+	
+	if (triggerDate == nil )
+		[alarmDict setObject:[NSString string] 
+					  forKey:NSLocalizedString(@"ALARM_ABSOLUTE_TRIGGER", @"")];
+	else
+		[alarmDict setObject:[dateFormatter stringFromDate:triggerDate] 
+					  forKey:NSLocalizedString(@"ALARM_ABSOLUTE_TRIGGER", @"")];
+	
+	if ( action == nil )
+		[alarmDict setObject:[NSString string] forKey:NSLocalizedString(@"ALARM_ACTION", @"")];
+	else
+		[alarmDict setObject:action forKey:NSLocalizedString(@"ALARM_ACTION", @"")];
+	
+	if ( email == nil )
+		[alarmDict setObject:[NSString string] forKey:NSLocalizedString(@"ALARM_EMAIL", @"")];
+	else
+		[alarmDict setObject:email forKey:NSLocalizedString(@"ALARM_EMAIL", @"")];
+	
+	if ( sound == nil )
+		[alarmDict setObject:[NSString string] forKey:NSLocalizedString(@"ALARM_SOUND", @"")];
+	else
+		[alarmDict setObject:sound forKey:NSLocalizedString(@"ALARM_SOUND", @"")];
+	
+	if ( relativeDate == nil )
+		[alarmDict setObject:[NSString string] forKey:NSLocalizedString(@"ALARM_RELATIVE_TIGGER", @"")];
+	else
+		[alarmDict setObject:[relativeDate stringValue] forKey:NSLocalizedString(@"ALARM_RELATIVE_TIGGER", @"")];
+	
+	if ( url == nil )
+		[alarmDict setObject:[NSString string] forKey:NSLocalizedString(@"ALARM_URL", @"")];
+	else
+		[alarmDict setObject:url forKey:NSLocalizedString(@"ALARM_URL", @"")];
+	
+	return alarmDict;
+}
+
+- (void) setAlarmTaskModified
+{
+		// if this Alram changes we need to mark the Task as modified also
+}
+
+
+-(void) setActionType{
+	
+	// determine the alarm action type
+	alarmActionType = alarmActionNone;
+	if([self.action isEqualToString:@"DISPLAY"]){	
+		alarmActionType = alarmActionMessage;		
+	}else if([self.action isEqualToString:@"EMAIL"]){		
+		alarmActionType = alarmActionEmail;	
+	} else if([self.action isEqualToString:@"PROCEDURE"]){		
+		alarmActionType = alarmActionRunScript;	
+	}else if([self.action isEqualToString:@"AUDIO"]){		
+		alarmActionType = alarmActionMessageWithSound;	
+	}
+	
+}
+
+-(NSString*) getActionString{
+	
+	NSString* actionString;
+	
+	switch (alarmActionType) {
+			
+		case alarmActionNone:
+			actionString = @"None";
+			break;
+			
+		case alarmActionMessage:
+			actionString = @"Message";
+			break;
+			
+		case alarmActionEmail:
+			actionString = @"Email";
+			break;
+			
+		case alarmActionRunScript:
+			actionString =@"Open File";
+			break;
+			
+		case alarmActionMessageWithSound:
+			actionString = @"Message with sound";
+			break;
+			
+		default:
+			actionString = @"None";
+			break;
+			break;
+	}
+	
+	
+	return actionString;
+}
+
+
+
+
+- (NSDate*) getAlarmDateWithDueDate:(NSDate*)dueDate{
+	
+	NSTimeInterval offset = [self.relativeDate doubleValue]; 
+	NSDate*	offsetDate  = [[NSDate alloc] initWithTimeInterval:offset sinceDate:dueDate];
+	
+	
+	return offsetDate;
+	
+}
+
+- (NSString*) getAlarmDateStringWithDueDate:(NSDate*)dueDate{
+	
+	NSDateFormatter *dateFormatter;
+	
+	//Create a date formatter to convert the date to a string format.
+	dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+	
+	// the relative date is the due date converted to a number
+	// plus the relative date
+	NSString* dateString = @"";
+	
+	NSDate*	offsetDate  = [self getAlarmDateWithDueDate:dueDate];
+	
+	dateString = [dateFormatter stringFromDate:offsetDate];
+	
+	[offsetDate release];
+	
+	return dateString;
+	
+}
+
+- (NSString*) getAlarmTimeStringWithDueDate:(NSDate*)dueDate{
+	
+	NSDateFormatter *dateFormatter;
+	
+	//Create a date formatter to convert the date to a string format.
+	dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateStyle:NSDateFormatterNoStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+	
+	// the relative date is the due date converted to a number
+	// plus the relative date
+	NSString* dateString = @"";
+	
+	NSDate*	offsetDate  = [self getAlarmDateWithDueDate:dueDate];
+	
+	dateString = [dateFormatter stringFromDate:offsetDate];
+	
+	[offsetDate release];
+	
+	return dateString;
+	
+}
+
+
+@end

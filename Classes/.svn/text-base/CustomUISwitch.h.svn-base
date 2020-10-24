@@ -1,0 +1,22 @@
+//
+//  CustomUISwitch.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/12/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface UISwitch (extended)
+- (void) setAlternateColors:(BOOL) boolean;
+@end
+
+@interface _UISwitchSlider : UIView
+@end
+
+@interface CustomUISwitch : UISwitch {
+}
+	- (void) setLeftLabelText: (NSString *) labelText;
+	- (void) setRightLabelText: (NSString *) labelText;
+@end

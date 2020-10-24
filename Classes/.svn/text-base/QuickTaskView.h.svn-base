@@ -1,0 +1,17 @@
+//
+//  QuickTaskView.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/16/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface QuickTaskView : UIView {
+	IBOutlet UITextField *titleField;
+}
+@property (nonatomic, retain) UITextField *titleField;
+
+@end

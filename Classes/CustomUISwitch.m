@@ -1,0 +1,32 @@
+//
+//  CustomUISwitch.m
+//  iTask-iPhone
+//
+//  Created by Denis Arsenault on 12/10/08.
+//  Copyright 2008 Mybrightzone. All rights reserved.
+//  
+//
+
+#import "CustomUISwitch.h"
+
+
+@implementation CustomUISwitch
+- (_UISwitchSlider *) slider { 
+	return [[self subviews] lastObject]; 
+}
+- (UIView *) textHolder { 
+	return [[[self slider] subviews] objectAtIndex:2]; 
+}
+- (UILabel *) leftLabel { 
+	return [[[self textHolder] subviews] objectAtIndex:0]; 
+}
+- (UILabel *) rightLabel { 
+	return [[[self textHolder] subviews] objectAtIndex:1]; 
+}
+- (void) setLeftLabelText: (NSString *) labelText { 
+	[[self leftLabel] setText:labelText]; 
+}
+- (void) setRightLabelText: (NSString *) labelText { 
+	[[self rightLabel] setText:labelText]; 
+}
+@end

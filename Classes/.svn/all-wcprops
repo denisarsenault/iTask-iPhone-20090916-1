@@ -1,0 +1,275 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/iTask-iPhone/!svn/ver/92/trunk/iTask-iPhone/Classes
+END
+TaskListView.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/iTask-iPhone/!svn/ver/24/trunk/iTask-iPhone/Classes/TaskListView.h
+END
+CustomUISwitch.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/iTask-iPhone/!svn/ver/75/trunk/iTask-iPhone/Classes/CustomUISwitch.h
+END
+QuickTaskView.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/iTask-iPhone/!svn/ver/100/trunk/iTask-iPhone/Classes/QuickTaskView.h
+END
+Alarm.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/iTask-iPhone/!svn/ver/94/trunk/iTask-iPhone/Classes/Alarm.h
+END
+TaskListView.m
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/iTask-iPhone/!svn/ver/24/trunk/iTask-iPhone/Classes/TaskListView.m
+END
+CustomUISwitch.m
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/iTask-iPhone/!svn/ver/74/trunk/iTask-iPhone/Classes/CustomUISwitch.m
+END
+QuickTaskView.m
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/iTask-iPhone/!svn/ver/100/trunk/iTask-iPhone/Classes/QuickTaskView.m
+END
+Alarm.m
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/iTask-iPhone/!svn/ver/96/trunk/iTask-iPhone/Classes/Alarm.m
+END
+Task.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/iTask-iPhone/!svn/ver/106/trunk/iTask-iPhone/Classes/Task.h
+END
+iTaskAppDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/iTask-iPhone/!svn/ver/101/trunk/iTask-iPhone/Classes/iTaskAppDelegate.h
+END
+Task.m
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/iTask-iPhone/!svn/ver/106/trunk/iTask-iPhone/Classes/Task.m
+END
+LabelValueCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/iTask-iPhone/!svn/ver/55/trunk/iTask-iPhone/Classes/LabelValueCell.h
+END
+SegmentedControlCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/iTask-iPhone/!svn/ver/48/trunk/iTask-iPhone/Classes/SegmentedControlCell.h
+END
+iTaskAppDelegate.m
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/iTask-iPhone/!svn/ver/106/trunk/iTask-iPhone/Classes/iTaskAppDelegate.m
+END
+TextViewCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/iTask-iPhone/!svn/ver/61/trunk/iTask-iPhone/Classes/TextViewCell.h
+END
+TitleCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/iTask-iPhone/!svn/ver/90/trunk/iTask-iPhone/Classes/TitleCell.h
+END
+LabelValueCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/iTask-iPhone/!svn/ver/65/trunk/iTask-iPhone/Classes/LabelValueCell.m
+END
+SegmentedControlCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/iTask-iPhone/!svn/ver/102/trunk/iTask-iPhone/Classes/SegmentedControlCell.m
+END
+TextViewCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/iTask-iPhone/!svn/ver/82/trunk/iTask-iPhone/Classes/TextViewCell.m
+END
+TitleCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/iTask-iPhone/!svn/ver/102/trunk/iTask-iPhone/Classes/TitleCell.m
+END
+TextViewEditingController.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/iTask-iPhone/!svn/ver/82/trunk/iTask-iPhone/Classes/TextViewEditingController.h
+END
+InfoViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/iTask-iPhone/!svn/ver/24/trunk/iTask-iPhone/Classes/InfoViewController.h
+END
+AlarmCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/iTask-iPhone/!svn/ver/96/trunk/iTask-iPhone/Classes/AlarmCell.h
+END
+TextViewEditingController.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/iTask-iPhone/!svn/ver/82/trunk/iTask-iPhone/Classes/TextViewEditingController.m
+END
+TaskListViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/iTask-iPhone/!svn/ver/102/trunk/iTask-iPhone/Classes/TaskListViewController.h
+END
+TaskListCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/iTask-iPhone/!svn/ver/84/trunk/iTask-iPhone/Classes/TaskListCell.h
+END
+InfoViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/iTask-iPhone/!svn/ver/24/trunk/iTask-iPhone/Classes/InfoViewController.m
+END
+AlarmCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/iTask-iPhone/!svn/ver/102/trunk/iTask-iPhone/Classes/AlarmCell.m
+END
+TaskViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/iTask-iPhone/!svn/ver/106/trunk/iTask-iPhone/Classes/TaskViewController.h
+END
+TaskListViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/iTask-iPhone/!svn/ver/106/trunk/iTask-iPhone/Classes/TaskListViewController.m
+END
+TaskListCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/iTask-iPhone/!svn/ver/84/trunk/iTask-iPhone/Classes/TaskListCell.m
+END
+TaskViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/iTask-iPhone/!svn/ver/106/trunk/iTask-iPhone/Classes/TaskViewController.m
+END
+RelativeDateViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/iTask-iPhone/!svn/ver/96/trunk/iTask-iPhone/Classes/RelativeDateViewController.h
+END
+AddTaskViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/iTask-iPhone/!svn/ver/17/trunk/iTask-iPhone/Classes/AddTaskViewController.h
+END
+RelativeDateViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/iTask-iPhone/!svn/ver/96/trunk/iTask-iPhone/Classes/RelativeDateViewController.m
+END
+AddTaskViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/iTask-iPhone/!svn/ver/103/trunk/iTask-iPhone/Classes/AddTaskViewController.m
+END
+DateFieldCell.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/iTask-iPhone/!svn/ver/59/trunk/iTask-iPhone/Classes/DateFieldCell.h
+END
+AlarmTypeViewControler.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/iTask-iPhone/!svn/ver/95/trunk/iTask-iPhone/Classes/AlarmTypeViewControler.h
+END
+RootViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/iTask-iPhone/!svn/ver/2/trunk/iTask-iPhone/Classes/RootViewController.h
+END
+EditingViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/iTask-iPhone/!svn/ver/66/trunk/iTask-iPhone/Classes/EditingViewController.h
+END
+QuickTaskView.xib
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/iTask-iPhone/!svn/ver/100/trunk/iTask-iPhone/Classes/QuickTaskView.xib
+END
+DateFieldCell.m
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/iTask-iPhone/!svn/ver/90/trunk/iTask-iPhone/Classes/DateFieldCell.m
+END
+AlarmTypeViewControler.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/iTask-iPhone/!svn/ver/96/trunk/iTask-iPhone/Classes/AlarmTypeViewControler.m
+END
+EditingViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/iTask-iPhone/!svn/ver/102/trunk/iTask-iPhone/Classes/EditingViewController.m
+END
+RootViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/iTask-iPhone/!svn/ver/9/trunk/iTask-iPhone/Classes/RootViewController.m
+END

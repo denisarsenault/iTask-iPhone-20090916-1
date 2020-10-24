@@ -1,0 +1,40 @@
+//
+//  TaskListViewController.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/5/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class TaskViewController, AddTaskViewController, Task, QuickTaskView;
+
+@interface TaskListViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
+	IBOutlet UITableView *tableView;
+    UINavigationController *addNavigationController;
+	TaskViewController *taskViewController;
+	AddTaskViewController *addTaskViewController;
+	
+	UIView	*addTaskButtonsView;
+	IBOutlet QuickTaskView	*quickTaskView;
+	
+	UIButton* addTaskButton;
+	UIButton* quickTaskButton;
+	
+	IBOutlet UIBarButtonItem	*saveButtonItem;
+	BOOL	noRowSelecting;
+
+}
+
+
+
+- (IBAction)completeChanged:(id)sender;
+- (IBAction)addTask:(id)sender;
+
+// When the user clicks the quick task, they need to hit the save button to save it.
+- (IBAction)quickAddTask:(id)sender;
+- (IBAction)save:(id)sender;
+- (IBAction)cancel:(id)sender;
+
+@end

@@ -1,0 +1,81 @@
+//
+//  CalendarListController.m
+//  iTask-iPhone
+//
+//  Created by Denis Arsenault on 12/10/08.
+//  Copyright 2008 Mybrightzone. All rights reserved.
+//
+
+#import "CalendarListController.h"
+#import "CalendarName.h"
+#import "Task.h"
+
+@implementation CalendarListController
+
+@synthesize calendarNames, task, tableView;
+
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
+    if (self = [super initWithNibName:nibName bundle:bundle]) {
+        self.title = @"Calendars";
+    }
+    return self;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations.
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview.
+}
+
+- (void)dealloc {
+    [calendarNames release];
+    [tableView release];
+    [super dealloc];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // Remove any previous selection.
+    NSIndexPath *tableSelection = [tableView indexPathForSelectedRow];
+	[tableView deselectRowAtIndexPath:tableSelection animated:NO];
+    [tableView reloadData];
+}
+
+// Return a checkmark accessory for only the currently designated type of the editing item.
+- (UITableViewCellAccessoryType)tableView:(UITableView *)aTableView accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath {
+    
+	CalendarName *cal = [calendarNames objectAtIndex:indexPath.row];
+	NSString *listUID = cal.UID;
+	NSString *taskCalUID = task.calendar;
+	
+	return ([listUID isEqualToString:taskCalUID]) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+}
+
+// Selection updates the editing item's type and navigates to the previous view controller.
+- (NSIndexPath *)tableView:(UITableView *)aTableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    CalendarName *cal = [calendarNames objectAtIndex:indexPath.row];
+	task.calendar = cal.UID;
+    [self.navigationController popViewControllerAnimated:YES];
+    return indexPath;
+}
+
+// The table uses standard UITableViewCells. The text for a cell is simply the string value of the matching type.
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TypeCell"];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"TypeCell"] autorelease];
+    }
+	
+	CalendarName *cal = [calendarNames objectAtIndex:indexPath.row];
+    cell.text = cal.name;
+    return cell;
+}
+
+// The table has one row for each possible type.
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
+    return [calendarNames count];
+}
+
+@end

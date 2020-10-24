@@ -1,0 +1,20 @@
+//
+//  TextViewCell.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/11/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface TextViewCell : UITableViewCell {
+	UILabel		*label;
+	UITextView  *textView;
+}
+
+@property (nonatomic, retain) UITextView *textView;
+@property (nonatomic, retain) UILabel *label;
+
+@end

@@ -1,0 +1,23 @@
+//
+//  SegmentedControlCell.h
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/9/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface SegmentedControlCell : UITableViewCell {
+	UILabel				*label;
+	UISegmentedControl	*segmentedControlView;
+}
+
+@property (nonatomic, retain) UILabel	*label;
+@property (nonatomic, retain) UISegmentedControl	*segmentedControlView;
+
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier items:(NSArray *)items;
+
+
+@end

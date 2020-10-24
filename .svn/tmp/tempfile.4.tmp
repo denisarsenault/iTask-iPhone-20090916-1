@@ -1,0 +1,480 @@
+//
+//  Task.m
+//  iTask-iPhone
+//
+//  Created by Marc Alringer on 12/5/08.
+//  Copyright 2008 Seamgen. All rights reserved.
+//
+
+#import "Task.h"
+
+// Static variables for compiled SQL queries. This implementation choice is to be able to share a one time
+// compilation of each query across all instances of the class. Each time a query is used, variables may be bound
+// to it, it will be "stepped", and then reset for the next usage. When the application begins to terminate,
+// a class method will be invoked to "finalize" (delete) the compiled queries - this must happen before the database
+// can be closed.
+static sqlite3_stmt *insert_statement = nil;
+static sqlite3_stmt *init_statement = nil;
+static sqlite3_stmt *delete_statement = nil;
+static sqlite3_stmt *hydrate_statement = nil;
+static sqlite3_stmt *dehydrate_statement = nil;
+
+@implementation Task
+
+@synthesize calendar;
+
+// Finalize (delete) all of the SQLite compiled queries.
++ (void)finalizeStatements {
+    if (insert_statement) {
+        sqlite3_finalize(insert_statement);
+        insert_statement = nil;
+    }
+    if (init_statement) {
+        sqlite3_finalize(init_statement);
+        init_statement = nil;
+    }
+    if (delete_statement) {
+        sqlite3_finalize(delete_statement);
+        delete_statement = nil;
+    }
+    if (hydrate_statement) {
+        sqlite3_finalize(hydrate_statement);
+        hydrate_statement = nil;
+    }
+    if (dehydrate_statement) {
+        sqlite3_finalize(dehydrate_statement);
+        dehydrate_statement = nil;
+    }
+}
+
+
+- (void) dealloc {
+	
+	[title release];
+	[dueDate release];
+	[completionDate release];
+	[priority release];
+	[desktopID release];
+	[notes release];
+	[URL release];
+	[calendar release];
+	[super dealloc];
+}
+
+- (id) initWithDictionary:(NSDictionary*) dictionary
+{
+	self = [super init];
+	if (self != nil) 
+	{
+		
+		NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]  autorelease];
+		[dateFormatter setDateFormat:@"MM/dd/yyyy"];
+		
+		self.title = [dictionary objectForKey:NSLocalizedString(@"TASK_TITLE", @"")];
+		
+		if ( ![[dictionary objectForKey:NSLocalizedString(@"TASK_DUE_DATE", @"")] isEqualToString:@""] )
+			self.dueDate = [dateFormatter dateFromString:[dictionary objectForKey:NSLocalizedString(@"TASK_DUE_DATE", @"")]];
+		
+		if ( ![[dictionary objectForKey:NSLocalizedString(@"TASK_COMPLETED", @"")] isEqualToString:@""] )
+			self.completionDate = [dateFormatter dateFromString:[dictionary objectForKey:NSLocalizedString(@"TASK_COMPLETED", @"")]];
+		
+		self.priority = [NSNumber numberWithInteger:[[dictionary objectForKey:NSLocalizedString(@"TASK_PRIORITY", @"")] integerValue]];
+		self.desktopID = [dictionary objectForKey:NSLocalizedString(@"TASK_ICAL_UID", @"")];
+		self.notes = [dictionary objectForKey:NSLocalizedString(@"TASK_NOTES", @"")];
+		self.URL = [dictionary objectForKey:NSLocalizedString(@"TASK_URL", @"")];
+		self.calendar = [dictionary objectForKey:NSLocalizedString(@"TASK_CALENDAR", @"")];
+		//self.taskID = [dictionary objectForKey:NSLocalizedString(@"TASK_IPHONE_UID", nil )];
+		
+			// now we need to do something with the Alarms ???
+	}
+	return self;
+}
+
+- (void) updateTaskWithDictionary:(NSDictionary*) dictionary
+{
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]  autorelease];
+	[dateFormatter setDateFormat:@"MM/dd/yyyy"];
+	
+	self.title = [dictionary objectForKey:NSLocalizedString(@"TASK_TITLE", @"")];
+	if ( ![[dictionary objectForKey:NSLocalizedString(@"TASK_DUE_DATE", @"")] isEqualToString:@""] )
+		self.dueDate = [dateFormatter dateFromString:[dictionary objectForKey:NSLocalizedString(@"TASK_DUE_DATE", @"")]];
+	
+	if ( ![[dictionary objectForKey:NSLocalizedString(@"TASK_COMPLETED", @"")] isEqualToString:@""] )
+		self.completionDate = [dateFormatter dateFromString:[dictionary objectForKey:NSLocalizedString(@"TASK_COMPLETED", @"")]];
+	
+	self.priority = [NSNumber numberWithInteger:[[dictionary objectForKey:NSLocalizedString(@"TASK_PRIORITY", @"")] integerValue]];
+	self.notes = [dictionary objectForKey:NSLocalizedString(@"TASK_NOTES", @"")];
+	self.URL = [dictionary objectForKey:NSLocalizedString(@"TASK_URL", @"")];
+	self.calendar = [dictionary objectForKey:NSLocalizedString(@"TASK_CALENDAR", @"")];
+	
+	// now we need to do something with the Alarms ???
+}
+
+#pragma mark Database access
+
+// Creates the object with primary key bring the tasks lsit information into memory.
+- (id)initWithPrimaryKey:(NSInteger)pk database:(sqlite3 *)db {
+    if (self = [super init]) {
+        
+		taskID = pk;
+        database = db;
+		
+        // Compile the query for retrieving task data. See insertNewTaskIntoDatabase: for more detail.
+        if (init_statement == nil) {
+           
+            const char *sql = "SELECT title, dueDate, completionDate, priority, desktopID, notes, URL, calendar FROM tasks WHERE taskID=?";
+            if (sqlite3_prepare_v2(database, sql, -1, &init_statement, NULL) != SQLITE_OK) {
+                NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+            }
+        }
+        
+		// Bind the primary key variable.
+        sqlite3_bind_int(init_statement, 1, taskID);
+		
+		// Execute the query.
+		int success =sqlite3_step(init_statement);
+		
+        if (success == SQLITE_ROW) {
+            self.title = [NSString stringWithUTF8String:(char *)sqlite3_column_text(init_statement, 0)];
+			
+			NSNumber *dateNum = [NSNumber numberWithDouble:sqlite3_column_double(init_statement, 1)];
+			if([dateNum intValue] != 0)
+				self.dueDate = [NSDate dateWithTimeIntervalSince1970:[dateNum doubleValue]];
+			
+			dateNum = [NSNumber numberWithDouble:sqlite3_column_double(init_statement, 2)];
+			if([dateNum intValue] != 0)
+				self.completionDate = [NSDate dateWithTimeIntervalSince1970:[dateNum doubleValue]];
+			
+			self.priority = [NSNumber numberWithInt:sqlite3_column_double(init_statement, 3)];
+			self.desktopID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(init_statement, 4)];
+			self.notes = [NSString stringWithUTF8String:(char *)sqlite3_column_text(init_statement, 5)];
+			self.URL = [NSString stringWithUTF8String:(char *)sqlite3_column_text(init_statement, 6)];
+			self.calendar = [NSString stringWithUTF8String:(char *)sqlite3_column_text(init_statement, 7)];
+
+		} 
+		
+        // Reset the statement for future reuse.
+        sqlite3_reset(init_statement);
+		
+        dirty = NO;
+    }
+    return self;
+}
+
+
+// Brings the alarms into memory. If already in memory, no action is taken (harmless no-op).
+- (void)hydrate {
+    // Check if action is necessary.
+    if (hydrated) return;
+   
+/*	
+	// Compile the hydration statement, if needed.
+    if (hydrate_statement == nil) {
+        const char *sql = "SELECT notes FROM tasks WHERE taskID=?";
+        if (sqlite3_prepare_v2(database, sql, -1, &hydrate_statement, NULL) != SQLITE_OK) {
+            NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+        }
+    }
+    // Bind the primary key variable.
+    sqlite3_bind_int(hydrate_statement, 1, taskID);
+    // Execute the query.
+    int success =sqlite3_step(hydrate_statement);
+    if (success == SQLITE_ROW) {
+       char *str = (char *)sqlite3_column_text(hydrate_statement, 0);
+		self.notes = (str) ? [NSString stringWithUTF8String:str] : @"";
+        
+    } else {
+        // The query did not return 
+        self.notes = @"Unknown";
+        
+    }
+    // Reset the query for the next use.
+    sqlite3_reset(hydrate_statement);
+*/
+    // Update object state with respect to hydration.
+    hydrated = YES;
+}
+
+
+
+// Flushes all but the primary key and title out to the database.
+- (void)dehydrate {
+    if (dirty) {
+        // Write any changes to the database.
+        // First, if needed, compile the dehydrate query.
+        if (dehydrate_statement == nil) {
+            const char *sql = "UPDATE tasks SET title=?, dueDate=?, completionDate=?, priority=?, desktopID=?, notes=?, URL=?, calendar=? WHERE taskID=?";
+            if (sqlite3_prepare_v2(database, sql, -1, &dehydrate_statement, NULL) != SQLITE_OK) {
+                NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+            }
+        }
+		
+		// Bind the query variables.
+		int var = 1;
+		if (title)
+			sqlite3_bind_text(dehydrate_statement, var++, [title UTF8String], -1, SQLITE_TRANSIENT);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (dueDate)
+			sqlite3_bind_double(dehydrate_statement, var++, [dueDate timeIntervalSince1970]);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (completionDate)
+			sqlite3_bind_double(dehydrate_statement, var++, [completionDate timeIntervalSince1970]);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (priority)
+			sqlite3_bind_int(dehydrate_statement, var++, [priority intValue]);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (desktopID)
+			sqlite3_bind_text(dehydrate_statement, var++, [desktopID UTF8String], -1, SQLITE_TRANSIENT);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (notes)
+			sqlite3_bind_text(dehydrate_statement, var++, [notes UTF8String], -1, SQLITE_TRANSIENT);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (URL)
+			sqlite3_bind_text(dehydrate_statement, var++, [URL UTF8String], -1, SQLITE_TRANSIENT);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+		if (calendar)
+			sqlite3_bind_text(dehydrate_statement, var++, [calendar UTF8String], -1, SQLITE_TRANSIENT);
+		else
+			sqlite3_bind_null(dehydrate_statement, var++);
+		
+        sqlite3_bind_int(dehydrate_statement, var++, taskID);
+		
+        // Execute the query.
+        int success = sqlite3_step(dehydrate_statement);
+        
+		// Reset the query for the next use.
+        sqlite3_reset(dehydrate_statement);
+        // Handle errors.
+        if (success != SQLITE_DONE) {
+            NSAssert1(0, @"Error: failed to dehydrate with message '%s'.", sqlite3_errmsg(database));
+        }
+        // Update the object state with respect to unwritten changes.
+        dirty = NO;
+    }
+    // TODO: Release Alarm variables to reclaim memory. Set to nil to avoid over-releasing them 
+    // if dehydrate is called multiple times.
+
+
+    // Update the object state with respect to hydration.
+    hydrated = NO;
+}
+
+- (void)insertIntoDatabase:(sqlite3 *)db {
+    database = db;
+    
+	// This query may be performed many times during the run of the application. As an optimization, a static
+    // variable is used to store the SQLite compiled byte-code for the query, which is generated one time - the first
+    // time the method is executed by any Task object.
+    if (insert_statement == nil) {
+        static char *sql = "INSERT INTO tasks (title, dueDate, completionDate, priority, desktopID, notes, URL, calendar) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        if (sqlite3_prepare_v2(database, sql, -1, &insert_statement, NULL) != SQLITE_OK) {
+            NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+        }
+    }
+	
+	// Bind the query variables.
+	int var = 1;
+	if (title)
+		sqlite3_bind_text(dehydrate_statement, var++, [title UTF8String], -1, SQLITE_TRANSIENT);
+	else
+		sqlite3_bind_null(dehydrate_statement, var++);
+	
+	if (dueDate)
+		sqlite3_bind_double(dehydrate_statement, var++, [dueDate timeIntervalSince1970]);
+	else
+		sqlite3_bind_null(dehydrate_statement, var++);
+	
+	if (completionDate)
+		sqlite3_bind_double(dehydrate_statement, var++, [completionDate timeIntervalSince1970]);
+	else
+		sqlite3_bind_null(dehydrate_statement, var++);
+	
+	if (priority)
+		sqlite3_bind_int(dehydrate_statement, var++, [priority intValue]);
+	else
+		sqlite3_bind_null(dehydrate_statement, var++);
+	
+	if (desktopID)
+		sqlite3_bind_text(dehydrate_statement, var++, [desktopID UTF8String], -1, SQLITE_TRANSIENT);
+	else
+		sqlite3_bind_null(dehydrate_statement, var++);
+	
+	if (notes)
+		sqlite3_bind_text(dehydrate_statement, var++, [notes UTF8String], -1, SQLITE_TRANSIENT);
+	else
+		sqlite3_bind_null(dehydrate_statement, var++);
+	
+	if (URL)
+		sqlite3_bind_text(dehydrate_statement, var++, [URL UTF8String], -1, SQLITE_TRANSIENT);
+	else
+		sqlite3_bind_null(dehydrate_statement, var++);
+	
+	if (calendar)
+		sqlite3_bind_text(dehydrate_statement, var++, [calendar UTF8String], -1, SQLITE_TRANSIENT);
+	else
+		sqlite3_bind_null(dehydrate_statement, var++);
+
+	
+	int success = sqlite3_step(insert_statement);
+    
+	// Because we want to reuse the statement, we "reset" it instead of "finalizing" it.
+    sqlite3_reset(insert_statement);
+    
+	if (success == SQLITE_ERROR) {
+        NSAssert1(0, @"Error: failed to insert into the database with message '%s'.", sqlite3_errmsg(database));
+    } else {
+        // SQLite provides a method which retrieves the value of the most recently auto-generated primary key sequence
+        // in the database. To access this functionality, the table should have a column declared of type 
+        // "INTEGER PRIMARY KEY"
+        taskID = sqlite3_last_insert_rowid(database);
+    }
+    // All data for the task is already in memory, but has not be written to the database
+    // Mark as hydrated to prevent empty/default values from overwriting what is in memory
+    hydrated = YES;
+}
+
+
+- (void)deleteFromDatabase {
+    // Compile the delete statement if needed.
+    if (delete_statement == nil) {
+        const char *sql = "DELETE FROM tasks WHERE taskID=?";
+        if (sqlite3_prepare_v2(database, sql, -1, &delete_statement, NULL) != SQLITE_OK) {
+            NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(database));
+        }
+    }
+    // Bind the primary key variable.
+    sqlite3_bind_int(delete_statement, 1, taskID);
+    // Execute the query.
+    int success = sqlite3_step(delete_statement);
+    // Reset the statement for future use.
+    sqlite3_reset(delete_statement);
+    // Handle errors.
+    if (success != SQLITE_DONE) {
+        NSAssert1(0, @"Error: failed to delete from database with message '%s'.", sqlite3_errmsg(database));
+    }
+}
+
+
+#pragma mark Dehydrated Properties
+// Accessors implemented below. All the "get" accessors simply return the value directly, with no additional
+// logic or steps for synchronization. The "set" accessors attempt to verify that the new value is definitely
+// different from the old value, to minimize the amount of work done. Any "set" which actually results in changing
+// data will mark the object as "dirty" - i.e., possessing data that has not been written to the database.
+// All the "set" accessors copy data, rather than retain it. This is common for value objects - strings, numbers, 
+// dates, data buffers, etc. This ensures that subsequent changes to either the original or the copy don't violate 
+// the encapsulation of the owning object.
+
+- (NSInteger)taskID {
+    return taskID;
+}
+
+- (NSString *)title {
+    return title;
+}
+
+- (void)setTitle:(NSString *)aString {
+    if ((!title && !aString) || (title && aString && [title isEqualToString:aString])) return;
+    dirty = YES;
+    [title release];
+    title = [aString copy];
+}
+
+
+- (NSDate *)dueDate {
+    return dueDate;
+}
+
+- (void)setDueDate:(NSDate *)aDate {
+    if ((!dueDate && !aDate) || (dueDate && aDate && [dueDate isEqualToDate:aDate])) return;
+    dirty = YES;
+    [dueDate release];
+    dueDate = [aDate copy];
+}
+
+- (NSDate *)completionDate {
+    return completionDate;
+}
+
+- (void)setCompletionDate:(NSDate *)aDate {
+    if ((!completionDate && !aDate) || (completionDate && aDate && [completionDate isEqualToDate:aDate])) return;
+    dirty = YES;
+    [completionDate release];
+    completionDate = [aDate copy];
+}
+
+- (NSNumber*)priority {
+    return priority;
+}
+
+- (void)setPriority:(NSNumber*)anInteger {
+    if ((!priority && !anInteger) || (priority && anInteger && [priority isEqualToNumber:anInteger])) return;
+    dirty = YES;
+    [priority release];
+    priority = [anInteger copy];
+}
+
+
+
+- (NSString *)desktopID {
+    return desktopID;
+}
+
+- (void)setDesktopID:(NSString *)aString {
+    if ((!desktopID && !aString) || (desktopID && aString && [desktopID isEqualToString:aString])) return;
+    dirty = YES;
+    [desktopID release];
+    desktopID = [aString copy];
+}
+
+
+- (NSString *)notes {
+    return notes;
+}
+
+- (void)setNotes:(NSString *)aString {
+    if ((!notes && !aString) || (notes && aString && [notes isEqualToString:aString])) return;
+    dirty = YES;
+    [notes release];
+    notes = [aString copy];
+}
+
+
+- (NSString *)URL {
+    return URL;
+}
+
+- (void)setURL:(NSString *)aString {
+    if ((!URL && !aString) || (URL && aString && [URL isEqualToString:aString])) return;
+    dirty = YES;
+    [URL release];
+    URL = [aString copy];
+}
+
+- (NSString *)calendar {
+    return calendar;
+}
+
+- (void)setCalendar:(NSString *)aString {
+    if ((!calendar && !aString) || (calendar && aString && [calendar isEqualToString:aString])) return;
+    dirty = YES;
+    [calendar release];
+    calendar = [aString copy];
+}
+
+#pragma mark Hydrated Properties
+
+@end

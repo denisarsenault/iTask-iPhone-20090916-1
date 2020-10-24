@@ -1,0 +1,194 @@
+//
+//  TaskListCell.m
+//  iTask-iPhone
+//
+//  Created by Denis Arsenault on 12/10/08.
+//  Copyright 2008 Mybrightzone. All rights reserved.
+//  
+//
+
+#import "TaskListCell.h"
+#import "Task.h"
+#import "constants.h"
+
+@implementation TaskListCell
+
+@synthesize task, dateFormatter, checkButton;
+
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier])
+	{
+		self.target = self;
+		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		self.accessoryAction = @selector(onClick:);
+		
+		// cell's title label
+		titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		titleLabel.backgroundColor = [UIColor clearColor];
+		titleLabel.opaque = NO;
+		titleLabel.textColor = [UIColor blackColor];
+		titleLabel.highlightedTextColor = [UIColor whiteColor];
+		titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
+		titleLabel.adjustsFontSizeToFitWidth = TRUE;
+		[self.contentView addSubview:titleLabel];
+		
+		
+		// due date label
+		dueDateLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		dueDateLabel.backgroundColor = [UIColor clearColor];
+		dueDateLabel.opaque = NO;
+		dueDateLabel.textColor = [UIColor grayColor];
+		dueDateLabel.highlightedTextColor = [UIColor whiteColor];
+		dueDateLabel.font = [UIFont boldSystemFontOfSize:12.0];
+		[self.contentView addSubview:dueDateLabel];
+		
+		
+		// priority label
+		priorityLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		priorityLabel.backgroundColor = [UIColor clearColor];
+		priorityLabel.opaque = NO;
+		priorityLabel.textColor = [UIColor grayColor];
+		priorityLabel.highlightedTextColor = [UIColor whiteColor];
+		priorityLabel.font = [UIFont boldSystemFontOfSize:12.0];
+		[self.contentView addSubview:priorityLabel];
+		
+		// cell's check button
+		checkButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+		checkButton.frame = CGRectZero;
+		checkButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+		checkButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+		[checkButton addTarget:self action:@selector(checkAction:) forControlEvents:UIControlEventTouchDown];
+		checkButton.backgroundColor = [UIColor clearColor];
+		[self.contentView addSubview:checkButton];
+		
+		// Create a date formatter to convert the date to a string format.
+		dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+		
+	}
+	return self;
+}
+
+//
+//
+//
+
+- (void)dealloc
+{
+	[dateFormatter release];	
+	[titleLabel release];
+	[dueDateLabel release];
+	[priorityLabel release];
+	[checkButton release];
+	
+	
+    [super dealloc];
+}
+
+//
+//
+//
+
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	
+    CGRect contentRect = [self.contentView bounds];
+	
+	// layout the check title label
+	// DLA Added length of string restriction default is shrink to fit
+	CGRect frame = CGRectMake(contentRect.origin.x + 45.0, 0.0, contentRect.size.width -70, 20);
+	titleLabel.frame = frame;
+	
+	// layout the check dueDate label
+	frame = CGRectMake(contentRect.origin.x + 47.0, 20.0, contentRect.size.width, 20.0);
+	dueDateLabel.frame = frame;
+	
+	// layout the check priority label
+	frame = CGRectMake(contentRect.origin.x + contentRect.size.width - 40 , 23.0, contentRect.size.width, 20.0);
+	priorityLabel.frame = frame;
+	
+	// layout the check button image
+	UIImage *checkedImage = [UIImage imageNamed:@"checked.png"];
+	frame = CGRectMake(contentRect.origin.x + 5.0, 5.0, checkedImage.size.width, checkedImage.size.height);
+	checkButton.frame = frame;
+}
+
+
+// the task setter
+// we implement this because the table cell values need
+// to be updated when this property changes, and this allows
+// for the changes to be encapsulated
+
+- (void)setTask:(Task *)aTask {
+	/*if (aTask != task) {
+	 [task release];
+	 [aTask retain];
+	 task = aTask;
+	 }*/
+	
+	task = aTask;
+	
+	titleLabel.text = task.title;
+	[titleLabel setNeedsDisplay];
+	
+	dueDateLabel.text = [dateFormatter stringFromDate:task.dueDate];
+	[dueDateLabel setNeedsDisplay];
+	
+	NSString	*strPriority;
+	
+	switch ([task.priority intValue])
+	{
+		case PriorityLow: 
+			strPriority = NSLocalizedString(@"Low", @""); 
+			break;
+		case PriorityMedium: 
+			strPriority = NSLocalizedString(@"Med", @""); 
+			break;
+		case PriorityHigh: 
+			strPriority = NSLocalizedString(@"High", @""); 
+			break;
+		case PriorityNone: 
+			strPriority = @""; 
+			break;
+		default:
+			strPriority = @""; 
+			break;
+	}
+	priorityLabel.text = strPriority;
+	[priorityLabel setNeedsDisplay];
+	
+	// a task is completed if it has a valid completion date
+	BOOL completed = (task.completionDate != nil);
+	
+	UIImage *image = (completed) ? [UIImage imageNamed:@"checked.png"]: [UIImage imageNamed:@"unchecked.png"];
+	UIImage *newImage = [image stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+	[checkButton setBackgroundImage:newImage forState:UIControlStateNormal];
+	
+}
+
+//
+// called when the checkmark button is touched 
+//
+- (void)checkAction:(id)sender
+{
+	// a task is completed if it has a valid completion date
+	BOOL completed = (task.completionDate != nil);
+	
+	if(!completed){
+		task.completionDate = [NSDate date];
+		completed = TRUE;
+	}else{
+		[task.completionDate release];
+		task.completionDate = nil;
+		completed = FALSE;
+	}
+
+	//UIImage *checkImage = (completed) ? [UIImage imageNamed:@"checked.png"] : [UIImage imageNamed:@"unchecked.png"];
+	//[checkButton setImage:checkImage forState:UIControlStateNormal];		
+
+}
+
+@end

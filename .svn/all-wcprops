@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/iTask-iPhone/!svn/ver/92/trunk/iTask-iPhone
+END
+main.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/iTask-iPhone/!svn/ver/2/trunk/iTask-iPhone/main.m
+END
+SplashScreenViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/iTask-iPhone/!svn/ver/101/trunk/iTask-iPhone/SplashScreenViewController.h
+END
+TimeEditorView.xib
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/iTask-iPhone/!svn/ver/94/trunk/iTask-iPhone/TimeEditorView.xib
+END
+SplashScreenViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/iTask-iPhone/!svn/ver/101/trunk/iTask-iPhone/SplashScreenViewController.m
+END
+AlarmEditingViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/iTask-iPhone/!svn/ver/95/trunk/iTask-iPhone/AlarmEditingViewController.h
+END
+info_icon.png
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/iTask-iPhone/!svn/ver/103/trunk/iTask-iPhone/info_icon.png
+END
+AlarmEditingViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/iTask-iPhone/!svn/ver/96/trunk/iTask-iPhone/AlarmEditingViewController.m
+END
+MainWindow.xib
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/iTask-iPhone/!svn/ver/102/trunk/iTask-iPhone/MainWindow.xib
+END
+iTask.png
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/iTask-iPhone/!svn/ver/61/trunk/iTask-iPhone/iTask.png
+END
+addTask.png
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/iTask-iPhone/!svn/ver/98/trunk/iTask-iPhone/addTask.png
+END
+CalendarListController.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/iTask-iPhone/!svn/ver/88/trunk/iTask-iPhone/CalendarListController.h
+END
+EditingView.xib
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/iTask-iPhone/!svn/ver/94/trunk/iTask-iPhone/EditingView.xib
+END
+DateEditorView.xib
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/iTask-iPhone/!svn/ver/94/trunk/iTask-iPhone/DateEditorView.xib
+END
+CalendarName.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/iTask-iPhone/!svn/ver/86/trunk/iTask-iPhone/CalendarName.h
+END
+constants.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/iTask-iPhone/!svn/ver/24/trunk/iTask-iPhone/constants.h
+END
+iTask_iPhone_Prefix.pch
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/iTask-iPhone/!svn/ver/2/trunk/iTask-iPhone/iTask_iPhone_Prefix.pch
+END
+CalendarListController.m
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/iTask-iPhone/!svn/ver/88/trunk/iTask-iPhone/CalendarListController.m
+END
+CalendarName.m
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/iTask-iPhone/!svn/ver/86/trunk/iTask-iPhone/CalendarName.m
+END
+AlarmTypeListView.xib
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/iTask-iPhone/!svn/ver/95/trunk/iTask-iPhone/AlarmTypeListView.xib
+END
+SplashScreenView.xib
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/iTask-iPhone/!svn/ver/101/trunk/iTask-iPhone/SplashScreenView.xib
+END
+TextViewEditingController.xib
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/iTask-iPhone/!svn/ver/82/trunk/iTask-iPhone/TextViewEditingController.xib
+END
+quickadd.png
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/iTask-iPhone/!svn/ver/63/trunk/iTask-iPhone/quickadd.png
+END
+AlarmEditingView.xib
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/iTask-iPhone/!svn/ver/94/trunk/iTask-iPhone/AlarmEditingView.xib
+END
+unchecked.png
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/iTask-iPhone/!svn/ver/61/trunk/iTask-iPhone/unchecked.png
+END
+ITaskDB.sql
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/iTask-iPhone/!svn/ver/92/trunk/iTask-iPhone/ITaskDB.sql
+END
+Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/iTask-iPhone/!svn/ver/61/trunk/iTask-iPhone/Info.plist
+END
+CalendarList.xib
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/iTask-iPhone/!svn/ver/89/trunk/iTask-iPhone/CalendarList.xib
+END
+DateTimeEditorViewController.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/iTask-iPhone/!svn/ver/94/trunk/iTask-iPhone/DateTimeEditorViewController.h
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/iTask-iPhone/!svn/ver/36/trunk/iTask-iPhone/README
+END
+DateTimeEditorViewController.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/iTask-iPhone/!svn/ver/94/trunk/iTask-iPhone/DateTimeEditorViewController.m
+END
+RootViewController.xib
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/iTask-iPhone/!svn/ver/2/trunk/iTask-iPhone/RootViewController.xib
+END
+InfoView.xib
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/iTask-iPhone/!svn/ver/24/trunk/iTask-iPhone/InfoView.xib
+END
+deletetask.png
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/iTask-iPhone/!svn/ver/65/trunk/iTask-iPhone/deletetask.png
+END
+checked.png
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/iTask-iPhone/!svn/ver/47/trunk/iTask-iPhone/checked.png
+END
+splash.png
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/iTask-iPhone/!svn/ver/101/trunk/iTask-iPhone/splash.png
+END
+TaskView.xib
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/iTask-iPhone/!svn/ver/103/trunk/iTask-iPhone/TaskView.xib
+END

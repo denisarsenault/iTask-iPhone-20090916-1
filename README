@@ -1,0 +1,14 @@
+When changing the ITaskDB.sql file make sure to regenerate the database by executing
+
+rm iTask.db
+sqlite3 iTask.db
+> .read 'ITaskDB.sql'
+> .quit
+
+Then reset the iPhone so that the current database is replaced with the new (empty)
+version.
+
+
+
+// Web sites for notes on the Address Book for iPhone
+http://mattgemmell.com/2008/10/31/iphone-dev-tips-for-synced-contacts
